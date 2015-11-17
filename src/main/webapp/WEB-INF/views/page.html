@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--<head th:fragment="head">-->
+<!--<title>Twitter</title>-->
+<!--<link rel="shortcut icon"-->
+<!--th:href="@{/resources/images/favicon.ico}"/>-->
+<!--<link rel="stylesheet"-->
+<!--type="text/css"-->
+<!--th:href="@{/resources/style.css}"/>-->
+<!--</head>-->
+
+<body>
+<div th:fragment="header">
+    <a th:href="@{/}">
+        <img th:src="@{/resources/images/twitter_logo_wide.png}" border="0" th:width="300" th:height="100"/>
+    </a>
+</div>
+
+<div>Content would be there</div>
+
+<div th:fragment="footer">Copyright &copy; Dmytro Krasota</div>
+</body>
+
+</html>

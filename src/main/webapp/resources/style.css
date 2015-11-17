@@ -1,0 +1,59 @@
+body {
+    /*background: #ff9933 url(images/spitter_background.gif) no-repeat fixed left top;*/
+    background: #00c2ff url(images/twi_background.jpg) no-repeat
+        fixed left top;
+    color: #333333;
+    font-family: sans-serif;
+    font-size: 0.75em;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.tweetList h1 {
+    font-size: 16pt;
+}
+
+.tweetList ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.tweetList ul li:first-child {
+    border-top: 0;
+}
+
+.tweetList ul li {
+    border-top: 1px solid #cccccc;
+}
+
+.tweetTime {
+    font-size: 8pt;
+}
+
+.tweetLocation {
+    font-size: 8pt;
+}
+
+.tweetForm h1 {
+    font-size: 16pt;
+}
+
+
+label.error {
+    color: red;
+}
+
+input.error {
+    background-color: #ffcccc;
+}
+
+div.errors {
+    background-color: #ffcccc;
+    border: 2px solid red;
+}
