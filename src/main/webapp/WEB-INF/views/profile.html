@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Twitter</title>
+    <link rel="shortcut icon"
+          th:href="@{/resources/images/favicon.ico}"/>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/resources/style.css}"/>
+</head>
+<body>
+<div id="header" th:include="page :: header"></div>
+
+<div id="content">
+    <h1>Your Profile</h1>
+    Username: <span th:text="${userProfile.username}">username</span><br/>
+    <!--Name: <span th:text="${user.firstName}">First</span> <span th:text="${user.lastName}">Last</span><br/>-->
+    Email: <span th:text="${userProfile.email}">email</span><br/>
+
+    <!--Img: <br/><img th:src="${imageSrc}"></img>-->
+    <!--imgSrc: <br/><span th:text="${imageSrc}">img address</span>-->
+
+    <a th:href="@{/}">To main page</a>
+
+</div>
+
+<div id="footer" th:include="page :: footer"></div>
+</body>
+</html>

@@ -3,12 +3,14 @@ package tleaf.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import tleaf.UserProfile;
 
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Repository
 public class JdbcUserProfileRepository implements UserProfileRepository {
     private JdbcOperations jdbc;
 
