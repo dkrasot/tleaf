@@ -7,6 +7,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tleaf.UserProfile;
 import tleaf.data.UserProfileRepository;
@@ -56,6 +58,19 @@ public class UserProfileController {
         }
         return "profile";
     }
+
+
+    //test Multipart upload - TODO delete this 2 methods and tmp_uploadForm after making profile with avatar image
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public String tmp_showUploadForm() {
+        return "tmp_uploadForm";
+    }
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String tmp_processUpload(@RequestPart("file") MultipartFile file) {
+        System.out.println("---->  Filename - " + file.getName() + "; filesize - "  + file.getSize());
+        return "redirect:/";
+    }
+    //TODO NEXT - Multipart in userProfile : http://www.mkyong.com/spring-mvc/spring-mvc-file-upload-example/ ..
 }
 
 // ...Notes...

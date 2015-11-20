@@ -3,6 +3,7 @@ package tleaf;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +26,8 @@ public class UserProfile {
     @NotNull
     @Email(message="Please provide a valid email address")
     private String email;
+
+    //private MultipartFile profilePicture;
 
     public UserProfile() {
     }
@@ -71,6 +74,16 @@ public class UserProfile {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+//    public MultipartFile getProfilePicture() {
+//        return profilePicture;
+//    }
+//
+//    public void setProfilePicture(MultipartFile profilePicture) {
+//        this.profilePicture = profilePicture;
+//    }
+
 
     @Override
     public boolean equals(Object that) {
