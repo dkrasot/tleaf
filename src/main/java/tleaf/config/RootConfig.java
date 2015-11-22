@@ -11,10 +11,10 @@ import java.util.regex.Pattern;
 @Configuration
 @Import(DataConfig.class)
 @ComponentScan(basePackages = {"tleaf"},
-    //excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class))
-    excludeFilters = {
-            @ComponentScan.Filter(type = FilterType.CUSTOM, value = RootConfig.WebPackage.class)
-    })
+        //excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class))
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.CUSTOM, value = RootConfig.WebPackage.class)
+        })
 public class RootConfig {
     public static class WebPackage extends RegexPatternTypeFilter {
         public WebPackage() {

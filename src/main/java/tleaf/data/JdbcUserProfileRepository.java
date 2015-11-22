@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import tleaf.UserProfile;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -21,8 +20,8 @@ public class JdbcUserProfileRepository implements UserProfileRepository {
 
     @Override
     public UserProfile save(UserProfile userProfile) {
-        jdbc.update("INSERT INTO UserProfile (username, password, email) "+
-                    " VALUES (?,?,?)",
+        jdbc.update("INSERT INTO UserProfile (username, password, email) " +
+                        " VALUES (?,?,?)",
                 userProfile.getUsername(),
                 userProfile.getPassword(),
                 userProfile.getEmail()

@@ -14,24 +14,24 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] {WebConfig.class};
+        return new Class<?>[]{WebConfig.class};
     }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] {RootConfig.class};
+        return new Class<?>[]{RootConfig.class};
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] {"/"};
+        return new String[]{"/"};
     }
 
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(
-                new MultipartConfigElement("/",2097152, 4194304, 0)
-                // ONLY "/" location is ok for GlassFish; WebSphere is OK with /tmp/blabla/uploads/...
+                new MultipartConfigElement("/", 2097152, 4194304, 0)
+                // ONLY "/" location is ok for GlassFish; WebSphere is OK with /tmp/some dir/uploads/...
         );
     }
     // ServletRegistration.Dynamic supports configuring of:

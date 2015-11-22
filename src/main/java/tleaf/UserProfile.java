@@ -9,31 +9,30 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserProfile {
-//    id IDENTITY,
+    //    id IDENTITY,
 //    username VARCHAR(20) UNIQUE not null,
 //    password VARCHAR(20) not null,
 //    email VARCHAR(30) not null
     private Long id;
 
     @NotNull
-    @Size(min=5, max = 16, message = "{username.size}")
+    @Size(min = 5, max = 16, message = "{username.size}")
     private String username;
 
     @NotNull
-    @Size(min=5, max = 25, message = "{password.size}")
+    @Size(min = 5, max = 25, message = "{password.size}")
     private String password;
 
     @NotNull
-    @Email(message="Please provide a valid email address")
+    @Email(message = "Please provide a valid email address")
     private String email;
 
-    //private MultipartFile profilePicture;
 
     public UserProfile() {
     }
 
     public UserProfile(String username, String password, String email) {
-        this(null,username,password,email);
+        this(null, username, password, email);
     }
 
     public UserProfile(Long id, String username, String password, String email) {
@@ -42,6 +41,7 @@ public class UserProfile {
         this.password = password;
         this.email = email;
     }
+
 
     public Long getId() {
         return id;
@@ -75,16 +75,6 @@ public class UserProfile {
         this.email = email;
     }
 
-
-//    public MultipartFile getProfilePicture() {
-//        return profilePicture;
-//    }
-//
-//    public void setProfilePicture(MultipartFile profilePicture) {
-//        this.profilePicture = profilePicture;
-//    }
-
-
     @Override
     public boolean equals(Object that) {
         return EqualsBuilder.reflectionEquals(this, that, new String[]{"username", "password", "email"});
@@ -93,5 +83,15 @@ public class UserProfile {
     @Override
     public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this, new String[]{"username", "password", "email"});
+    }
+
+    private MultipartFile profilePicture;
+
+    public MultipartFile getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(MultipartFile profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

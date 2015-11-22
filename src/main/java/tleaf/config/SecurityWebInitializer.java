@@ -1,7 +1,5 @@
 package tleaf.config;
 
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
-
 //DISABLING TEMPORARY
 
 public class SecurityWebInitializer {//extends AbstractSecurityWebApplicationInitializer {

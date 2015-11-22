@@ -1,19 +1,15 @@
 package tleaf.web;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
@@ -33,6 +29,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         viewResolver.setTemplateEngine(templateEngine);
         return viewResolver;
     }
+
     @Bean
     public SpringTemplateEngine templateEngine(TemplateResolver templateResolver) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -41,6 +38,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
     }
+
     @Bean
     public TemplateResolver templateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
@@ -81,7 +79,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        return messageSource;
 //    }
 
-//    MULTIPART
+    //    MULTIPART
 //    configuring of params in our ..WebInitializer because it doesn't have a constructor and setters
     @Bean
     public MultipartResolver multipartResolver() throws IOException {

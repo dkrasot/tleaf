@@ -14,6 +14,7 @@ import tleaf.UserProfile;
 import tleaf.data.UserProfileRepository;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 
 @Controller
@@ -41,9 +42,14 @@ public class UserProfileController {
             return "registerForm";
         }
         repository.save(userProfile);
+        MultipartFile profilePicture = userProfile.getProfilePicture();
+        //profilePicture.transferTo(new File("/tmp/demo-leaf/"+ user.getUsername() + ".jpg"));
+        //TODO Later - resolve problem with multipart-requests on GlassFish server - maybe try CommonsMultipartResolver ... WebSphere is fine with StandardSMPResolver
+        profilePicture.transferTo(new File(userProfile.getUsername()+".jpg"));
+        //GlassFish - file creating at this directory: glassfish4\glassfish\domains\domain1\generated\jsp\Tleaf-1.0-SNAPSHOT
+
         redirectAttributes.addAttribute("username", userProfile.getUsername());
         redirectAttributes.addFlashAttribute(userProfile);
-        // TODO : maybe send image as Flash attr?
 
         return "redirect:/user/{username}";
 // if we add another attr by addAttribute (userId) but don't write it to redirect' {} we will get redirect:/user/USERNAME?userId=25
@@ -65,9 +71,10 @@ public class UserProfileController {
     public String tmp_showUploadForm() {
         return "tmp_uploadForm";
     }
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String tmp_processUpload(@RequestPart("file") MultipartFile file) {
-        System.out.println("---->  Filename - " + file.getName() + "; filesize - "  + file.getSize());
+        System.out.println("---->  Filename - " + file.getName() + "; filesize - " + file.getSize());
         return "redirect:/";
     }
     //TODO NEXT - Multipart in userProfile : http://www.mkyong.com/spring-mvc/spring-mvc-file-upload-example/ ..

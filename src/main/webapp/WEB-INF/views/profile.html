@@ -17,8 +17,9 @@
     <!--Name: <span th:text="${user.firstName}">First</span> <span th:text="${user.lastName}">Last</span><br/>-->
     Email: <span th:text="${userProfile.email}">email</span><br/>
 
-    <!--Img: <br/><img th:src="${imageSrc}"></img>-->
-    <!--imgSrc: <br/><span th:text="${imageSrc}">img address</span>-->
+    <!--Img: <br/><img th:src="${userProfile.profilePicture}"></img>-->
+    <!--imgSrc: <br/><span th:text="${userProfile.profilePicture}">img address</span>-->
+    <!--<span th:text="${pic.getSize()}">__-__</span>-->
 
     <br/>
     <a th:href="@{/}">To main page</a>
