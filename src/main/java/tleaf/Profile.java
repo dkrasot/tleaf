@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class UserProfile {
+public class Profile {
     //    id IDENTITY,
 //    username VARCHAR(20) UNIQUE not null,
 //    password VARCHAR(20) not null,
@@ -28,14 +28,14 @@ public class UserProfile {
     private String email;
 
 
-    public UserProfile() {
+    public Profile() {
     }
 
-    public UserProfile(String username, String password, String email) {
+    public Profile(String username, String password, String email) {
         this(null, username, password, email);
     }
 
-    public UserProfile(Long id, String username, String password, String email) {
+    public Profile(Long id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -85,13 +85,13 @@ public class UserProfile {
         return HashCodeBuilder.reflectionHashCode(this, new String[]{"username", "password", "email"});
     }
 
-    private MultipartFile profilePicture;
-
-    public MultipartFile getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(MultipartFile profilePicture) {
-        this.profilePicture = profilePicture;
-    }
+//    private MultipartFile profilePicture;
+//
+//    public MultipartFile getProfilePicture() {
+//        return profilePicture;
+//    }
+//
+//    public void setProfilePicture(MultipartFile profilePicture) {
+//        this.profilePicture = profilePicture;
+//    }
 }

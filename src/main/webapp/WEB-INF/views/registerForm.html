@@ -14,7 +14,7 @@
 <div id="content">
     <h1>Register</h1>
 
-    <form th:object="${userProfile}" method="POST" enctype="multipart/form-data">
+    <form th:object="${profile}" method="POST" enctype="multipart/form-data">
         <div class="errors" th:if="${#fields.hasErrors('*')}">
             <ul>
                 <li th:each="err : ${#fields.errors('*')}"

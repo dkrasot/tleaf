@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Twitter</title>
+    <link rel="shortcut icon"
+          th:href="@{/resources/images/favicon.ico}"/>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/resources/style.css}"/>
+</head>
+<body>
+<div id="header" th:include="page :: header"></div>
+
+<div id="content">
+
+    <div class="tweetForm">
+        <h1>Tweet it!</h1>
+        <form method="POST" name="tweetForm">
+            <!--<input type="hidden" name="latitude" />-->
+            <!--<input type="hidden" name="longitude" />-->
+            <textarea name="message" cols="80" rows="5"></textarea><br/>
+            <input type="submit" value="Add" />
+        </form>
+    </div>
+
+    <div class="listTitle">
+        <h1>Recent Tweets</h1>
+        <ul class="tweetList">
+            <li th:each="tweet : ${tweetList}"
+                th:id="'tweet_' + ${tweet.id}">
+                <div class="tweetMessage" th:text="${tweet.message}">Tweet message</div>
+                <div>
+                    <span class="tweetTime" th:text="${tweet.creationDate}">Tweet timestamp</span>
+                    <!--<span class="tweetLocation" th:text="'{' + ${tweet.latitude} + ', ' + ${tweet.longitude} + ')'">lat, long</span>-->
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div id="footer" th:include="page :: footer"></div>
+</body>
+</html>
