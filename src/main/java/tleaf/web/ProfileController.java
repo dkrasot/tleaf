@@ -27,20 +27,20 @@ public class ProfileController {
         this.repository = repository;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
         model.addAttribute(new Profile());
-        return "registerForm";
+        return "signUp";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String processRegistrationWithFile(@RequestPart(value = "profilePicture") MultipartFile profilePicture,
                                        @Valid Profile profile,
                                        Errors errors, //BindingResult can be used instead of Errors
                                        RedirectAttributes redirectAttributes)
             throws IllegalStateException, IOException {
         if (errors.hasErrors()) {
-            return "registerForm";
+            return "signUp";
         }
         repository.save(profile);
         profilePicture.transferTo(new File(profilePicture.getOriginalFilename()));
@@ -60,13 +60,13 @@ public class ProfileController {
 //1. Part - alternative to MultipartFile for Servlet 3.0+ containers
 // we don't need configuring of StandardServletMultipartResolver bean if using Part instead of MultipartFile
 
-    //@RequestMapping(value = "/register", method = RequestMethod.POST)
+    //@RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String processRegistration(@Valid ProfileForm profileForm,
                                       Errors errors, //BindingResult can be used instead of Errors
                                       RedirectAttributes redirectAttributes)
             throws IllegalStateException, IOException {
         if (errors.hasErrors()) {
-            return "registerForm";
+            return "signUp";
         }
         Profile profile = profileForm.toUser();
         repository.save(profile);

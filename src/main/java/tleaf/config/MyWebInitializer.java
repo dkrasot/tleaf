@@ -19,7 +19,7 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{RootConfig.class};
+        return new Class<?>[]{RootConfig.class, SecurityConfig.class};
     }
 
     @Override
@@ -33,6 +33,7 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
                 new MultipartConfigElement("/", 2097152, 4194304, 0)
                 // ONLY "/" location is ok for GlassFish; WebSphere is OK with /tmp/some dir/uploads/...
         );
+        // registration.setAsyncSupported(true); //for STOMP implementation
     }
     // ServletRegistration.Dynamic supports configuring of:
     // multipart-requests by setMultipartConfig(), load priorities by setLoadOnStartup(), init params by setInitParameter()

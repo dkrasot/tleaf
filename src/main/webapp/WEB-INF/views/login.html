@@ -1,0 +1,68 @@
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--xmlns:th="http://www.thymeleaf.org"-->
+<!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">&ndash;&gt;-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Twitter</title>
+    <link rel="shortcut icon"
+          th:href="@{/resources/images/favicon.ico}"/>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/resources/style.css}"/>
+</head>
+<body>
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--Hello there...<span sec:authentication="name">user-name</span>-->
+<!--</div>-->
+
+<div id="header" th:include="template :: header"></div>
+
+<div id="content">
+    <h1>Welcome to T-Leaf!</h1>
+
+
+
+    <!--TODO LOGIN FORM-->
+
+
+    <!--set URLs for login page/error page as <form-login> into Spring-Security config file (usually applicationContext-security.xml)-->
+    <!--<http auto-config="true">-->
+    <!--<form-login login-page="/login.html" authentication-failure-url="/login-error.html"/>-->
+    <!--<logout/>-->
+    <!--</http>-->
+    <!--<error-page>-->
+        <!--<exception-type>java.lang.Throwable</exception-type>-->
+        <!--<location>/error.html</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+        <!--<error-code>500</error-code>-->
+        <!--<location>/error.html</location>-->
+    <!--</error-page>-->
+
+
+    <!--Login Form for XML Config-->
+    <p th:if="${loginError}">Wrong user or password</p><br/>
+    <form th:action="@{/j_spring_security_check}" method="post">
+        <label for="j_username">Username</label>:
+        <input type="text" id="j_username" name="j_username"/><br/>
+        <label for="j_password">Password</label>:
+        <input type="password" id="j_password" name="j_password"/><br/>
+        <input type="submit" value="Log in / Sign In"/>
+    </form>
+
+    <!--<a th:href="@{/tweets}">Tweets</a> |-->
+    <a th:href="@{/profile/signup}">Register</a><br/>
+    <a th:href="@{/tweets}">Tweets</a><br/>
+
+    <br/><a th:href="@{/upload}">TEST Multipart upload</a><br/>
+
+    <!--View <span th:text="${view}">unknown</span>-->
+</div>
+
+<div id="footer" th:include="template :: footer"></div>
+</body>
+</html>
