@@ -1,0 +1,14 @@
+    TEMPORARY; del after DEBUG SPRING SECURITY
++ added views for Spring Security enabling: admin\, shared\, user\index.html, _error, _index, _login
++ web.TmpSecurityController
+
+TODO ENABLE SPRING SECURITY +login form; logout; error page
+?Java config or xml?
+? exception handling to ERROR page?
+
+EXAMPLE 1:
+https://github.com/dkrasot/demo-thyme-security/tree/master/src/main/webapp/WEB-INF
+
+TODO add tweet.html
+TODO /profile/signUp to signUp
+TODO write test for UploadController

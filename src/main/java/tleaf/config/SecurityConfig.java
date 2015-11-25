@@ -17,16 +17,10 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
-//this annotation auto-configuring SpringSecurity with these params:
-// login-page="/login"
-// login-processing-url="/login"
-// logout-success-url="/login?logout"
-// logout-url="/logout"
-// authentication-failure-url="/login?error"
-// password-parameter="password"
-// username-parameter="username"
+//this annotation auto-configuring SpringSecurity with these params: login-page="/login"; login-processing-url="/login"; logout-success-url="/login?logout"; logout-url="/logout"; authentication-failure-url="/login?error"; password-parameter="password"; username-parameter="username"
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    // https://spring.io/blog/2013/07/03/spring-security-java-config-preview-web-security/
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) {
 //        auth.inMemoryAuthentication().withUser("user").password("demo").roles("USER");

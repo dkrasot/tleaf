@@ -1,9 +1,13 @@
 package tleaf.config;
 
+import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import tleaf.web.WebConfig;
 
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 //Alternative to web.xml - needs Servlet 3.0+
@@ -11,6 +15,7 @@ import javax.servlet.ServletRegistration;
 // and ContextLoaderListener (using getRootCC -> 2nd app ctx )
 
 public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
@@ -37,7 +42,16 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
     }
     // ServletRegistration.Dynamic supports configuring of:
     // multipart-requests by setMultipartConfig(), load priorities by setLoadOnStartup(), init params by setInitParameter()
+
+
+    //TODO make Java config of SpringSecurity orr add XML config:
+//    @Override
+//    public void onStartup(ServletContext servletContext) throws ServletException {
+//        XmlWebApplicationContext applicationContext = new XmlWebApplicationContext();
+//        applicationContext.setConfigLocation("/WEB-INF/dispatcher-config.xml");
+//
+//        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
+//        dispatcher.setLoadOnStartup(1);
+//        dispatcher.addMapping("/");
+//    }
 }
-
-
-// TODO : ADD HTML views like in older project D:\Java\ideaProjects\MyThyme\src\main\webapp\WEB-INF\views
