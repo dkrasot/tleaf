@@ -53,7 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutSuccessUrl("/") // .logoutUrl("/logout") ????
 //.and().httpBasic().realmName("TLeaf") ????
+//.and().csrf().disable() //??disabled by default??
 //.and().rememberMe().tokenRepository(new InMemoryTokenRepositoryImpl()).tokenValiditySeconds(2419200).key("tleafKey")
+
                 .and()
                 .authorizeRequests()
                     .antMatchers("/").authenticated()
@@ -65,16 +67,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().permitAll();
     }
 
+
+
+
+
+
+
     //TODO make CSRF-token support later...
-//                .and().csrf().csrfTokenRepository(csrfTokenRepository()) //trying to add CSRF support
-//                .and().csrf().disable()
+// to remember: WITH CSRF LOGOUT must be with POST-request
+//    <c:url var="logoutUrl" value="/logout"/>
+//    <form action="${logoutUrl}" method="post">
+//        <input type="submit" value="Log out" />
+//        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+//    </form>
+
+    //to configure http: .and().csrf().csrfTokenRepository(csrfTokenRepository()) //trying to add CSRF support
 
 //    private CsrfTokenRepository csrfTokenRepository() {
 //        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
 //        repository.setSessionAttributeName("_csrf");
 //        return repository;
 //    }
-}
-
 // problem with CSRF; java.lang.ClassNotFoundException: org.springframework.security.web.access.expression.WebSecurityExpressionHandler
 // http://stackoverflow.com/questions/23113624/spring-security-error  - SOLUTION???
+}
+
