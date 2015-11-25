@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+       <authentication-manager>
+              <authentication-provider>
+                     <!--<password-encoder ref="bCryptPasswordEncoder"></password-encoder>-->
+                     <user-service id="inMemoryUserDetailsManager" />
+                     <!--TODO configure this -->
+                     <!--<jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"-->
+                                        <!--users-by-username-query="select login, password, is_enabled from users where login = ?"-->
+                                        <!--authorities-by-username-query="select u.login, p.`name`-->
+                    <!--from user_group_ref ug, permission_group_ref pg, users u, groups g, permissions p-->
+                    <!--where ug.user_id=u.id and ug.group_id=g.id and pg.group_id=g.id and pg.permission_id = p.id and u.login = ?"-->
+                                        <!--group-authorities-by-username-query="select g.id, g.`name`, p.`name`-->
+                    <!--from user_group_ref ug, permission_group_ref pg, users u, groups g, permissions p-->
+                    <!--where ug.user_id=u.id and ug.group_id=g.id and pg.group_id=g.id and pg.permission_id = p.id and u.login = ?"-->
+                             <!--/>-->
+              </authentication-provider>
+       </authentication-manager>
+
+       <http use-expressions="true">
+              <!-- URLs на которых сработает интерцептор безопасности (permitAll - разрешить вход всем (в т.ч. анонимным)-->
+              <intercept-url pattern="/*" access='permitAll'/>
+
+              <!-- Настройка входа пользователя -->
+              <form-login login-page="/login" authentication-failure-url="/login?error"
+                          username-parameter="user"
+                          password-parameter="demo"/>
+
+              <logout logout-url="/login?logout" />
+
+              <!--<remember-me remember-me-parameter="remember_me" user-service-ref="jdbcUserService"/>-->
+       </http>
+
+       <!-- Если указать этот файл в authentication-provider выше, то юзеры будут храниться в этом файле -->
+       <!--    <user-service id="userService"> -->
+       <!--        <user name="alexssource" authorities="ROLE_USER" password="123" /> -->
+       <!--    </user-service> -->
+
+       <!-- Хеширование паролей -->
+       <!--
+           При создании юзера используется так:
+           -> PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+           -> String encodedPassword = passwordEncoder.encode(password);
+        -->
+
+
+       <!--<beans:bean id='bCryptPasswordEncoder' class='org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'/>-->
+
+
+
+       <!--default BEANS -->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xmlns:security="http://www.springframework.org/schema/security"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+       <!--http://www.springframework.org/schema/beans/spring-beans.xsd-->
+       <!--http://www.springframework.org/schema/security-->
+       <!--http://www.springframework.org/schema/security/spring-security.xsd">-->
+</beans:beans>

@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("/tweets")
 public class TweetController {
     private static final String MAX_LONG_AS_STRING = "9223372036854775807";
-
     private TweetRepository repository;
 
     @Autowired
