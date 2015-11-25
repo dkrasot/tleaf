@@ -11,13 +11,25 @@
 <p>Example user: bob / demo</p>
 <p>Example user and administrator: ted / demo</p>
 <p th:if="${loginError}" class="error">Wrong user or password</p>
-<form th:action="@{/j_spring_security_check}" method="post">
-    <label for="j_username">Username</label>:
-    <input type="text" id="j_username" name="j_username" autofocus="autofocus" /> <br />
-    <label for="j_password">Password</label>:
-    <input type="password" id="j_password" name="j_password" /> <br />
+<!--<form th:action="@{/j_spring_security_check}" method="post">-->
+    <!--<label for="j_username">Username</label>:-->
+    <!--<input type="text" id="j_username" name="j_username" autofocus="autofocus" /> <br />-->
+    <!--<label for="j_password">Password</label>:-->
+    <!--<input type="password" id="j_password" name="j_password" /> <br />-->
+    <!--<input type="submit" value="Log in" />-->
+<!--</form>-->
+
+<!--FIXED FOR Spring Security 4+-->
+<!--/j_spring_security_check + j_username + j_password to /login + username + password-->
+
+<form th:action="@{/login}" method="post">
+    <label for="username">Username</label>:
+    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+    <label for="password">Password</label>:
+    <input type="password" id="password" name="password" /> <br />
     <input type="submit" value="Log in" />
 </form>
-<p><a href="../_index.html" th:href="@{/_index.html}">Back to home page</a></p>
+<!--href="../_index"-->
+<p><a th:href="@{/index}">Back to home page</a></p>
 </body>
 </html>

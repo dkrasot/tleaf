@@ -31,9 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("user").password("demo").roles("USER")
                 .and()
-                .withUser("admin").password("demo").roles("USER", "ADMIN")
+                .withUser("useradmin").password("demo").roles("USER", "ADMIN")
                 .and()
-                .withUser("adminonly").password("demo").roles("ADMIN");
+                .withUser("admin").password("demo").roles("ADMIN");
         //example with JDBC
 //        auth.jdbcAuthentication().dataSource(LINK_TO_AUTOWIRED_DataSource)
 //                .usersByUsernameQuery("select username, password, true from USERS where username=?")
@@ -49,22 +49,61 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/login")
-                .and()
-                .logout().logoutSuccessUrl("/") // .logoutUrl("/logout") ????
+
+        http.csrf().disable();
+
+        http.formLogin()
+                .loginPage("/login")
+                //.loginProcessingUrl("/j_spring_security_check") ????
+                .defaultSuccessUrl("/index")
+                .failureUrl("/login-error") // /login?error
+                .usernameParameter("username") //?username password?
+                .passwordParameter("password")
+                .permitAll();
+
+        http.logout()
+                //.logoutUrl("/logout") //default?
+                .logoutSuccessUrl("/")
+                .permitAll();
+//.invalidateHttpSession(true);  //??? cancelling Session
+
+        //example of LOGOUT
+//        http.logout()
+//                .permitAll()
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/login?logout")
+//                .invalidateHttpSession(true);
+
+        http.authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/shared/**").hasAnyRole("USER","ADMIN")
+
+                .antMatchers("/").authenticated()
+                .antMatchers("/me").authenticated()
+                //.antMatchers(HttpMethod.POST, "/tweets").authenticated()
+                .anyRequest().permitAll();
+
+                //.antMatchers("/admin").access("isAuthenticated() and principal.username=='admin'")
+                //.antMatchers("/upload").hasRole("ADMIN")
+                //.access("hasRole('ROLE_ADMIN') and hasIpAdress('192.168.1.2')")//example with SpEL
+
+//        <http auto-config="true" use-expressions="true">
+//        <!-- Login pages -->
+//        <form-login login-page="/login.html" authentication-failure-url="/login-error.html" />
+//        <logout />
+//        <!-- Security zones -->
+
+
+                //.and().logout().logoutSuccessUrl("/"); // .logoutUrl("/logout") ????
 //.and().httpBasic().realmName("TLeaf") ????
-//.and().csrf().disable() //??disabled by default??
 //.and().rememberMe().tokenRepository(new InMemoryTokenRepositoryImpl()).tokenValiditySeconds(2419200).key("tleafKey")
 
-                .and()
-                .authorizeRequests()
-                    .antMatchers("/").authenticated()
-                    .antMatchers("/me").authenticated()
-                    .antMatchers(HttpMethod.POST, "/tweets").authenticated()
-                    //.antMatchers("/admin").access("isAuthenticated() and principal.username=='admin'")
-                    //.antMatchers("/upload").hasRole("ADMIN")
-                        //.access("hasRole('ROLE_ADMIN') and hasIpAdress('192.168.1.2')")//example with SpEL
-                    .anyRequest().permitAll();
+        http.logout()
+                .permitAll()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                .invalidateHttpSession(true);
     }
 
 

@@ -11,53 +11,53 @@ import java.util.Locale;
 public class TmpSecurityController {
 //    @RequestMapping("/")
 //    public String root(Locale locale) {
-//        return "redirect:/index.html";
+//        return "redirect:/_index";
 //    }
 
-    @RequestMapping("/index.html")
+    @RequestMapping("/index")
     public String index() {
-        return "index.html";
+        return "_index";
     }
 
     /** User zone index. */
-    @RequestMapping("/user/index.html")
+    @RequestMapping("/user/index")
     public String userIndex() {
-        return "user/index.html";
+        return "user/index";
     }
 
     /** Administration zone index. */
-    @RequestMapping("/admin/index.html")
+    @RequestMapping("/admin/index")
     public String adminIndex() {
-        return "admin/index.html";
+        return "admin/index";
     }
 
     /** Shared zone index. */
-    @RequestMapping("/shared/index.html")
+    @RequestMapping("/shared/index")
     public String sharedIndex() {
-        return "shared/index.html";
+        return "shared/index";
     }
 
     /** Login form. */
-    @RequestMapping("/login.html")
+    @RequestMapping("/login")
     public String login() {
-        return "login.html";
+        return "_login";
     }
 
     /** Login form with error. */
-    @RequestMapping("/login-error.html")
+    @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "login.html";
+        return "_login";
     }
 
     /** Simulation of an exception. */
-    @RequestMapping("/simulateError.html")
+    @RequestMapping("/simulateError")
     public void simulateError() {
         throw new RuntimeException("This is a simulated error message");
     }
-
+// check Error handling.. now HTTP Status 500 - Internal Server Error - RuntimeException
     /** Error page. */
-    @RequestMapping("/error.html")
+    @RequestMapping("/error")
     public String error(HttpServletRequest request, Model model) {
         model.addAttribute("errorCode", "Error " + request.getAttribute("javax.servlet.error.status_code"));
         Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
@@ -69,7 +69,7 @@ public class TmpSecurityController {
         }
         errorMessage.append("</ul>");
         model.addAttribute("errorMessage", errorMessage.toString());
-        return "error.html";
+        return "_error";
     }
 
     /** Substitute 'less than' and 'greater than' symbols by its HTML entities. */

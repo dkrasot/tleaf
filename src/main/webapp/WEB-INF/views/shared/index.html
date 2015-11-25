@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}"/>
 </head>
 <body>
-<div th:substituteby="_index.html::logout"></div>
+<div th:substituteby="_index::logout"></div>
 <h1>Thymeleafexamples - Spring security</h1>
 <p>This is the <b>shared</b> zone</p>
 <p>Only authenticated users with roles <b>USER</b> or <b>ADMIN</b> are allowed to see this page.</p>
@@ -17,6 +17,6 @@
 <div sec:authorize="hasRole('ROLE_USER')">
     This content is only shown to <b>users</b>.
 </div>
-<p><a href="../_index.html" th:href="@{/_index.html}">Back to home page</a></p>
+<p><a href="../_index.html" th:href="@{/index}">Back to home page</a></p>
 </body>
 </html>

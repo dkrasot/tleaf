@@ -8,6 +8,7 @@
 <body>
 <h1 th:text="${errorCode}">404</h1>
 <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
-<a href="_index.html" th:href="@{/_index.html}">Back to Home Page</a>
+<!--href="_index.html"-->
+<a th:href="@{/index}">Back to Home Page</a>
 </body>
 </html>

@@ -12,3 +12,7 @@ https://github.com/dkrasot/demo-thyme-security/tree/master/src/main/webapp/WEB-I
 TODO add tweet.html
 TODO /profile/signUp to signUp
 TODO write test for UploadController
+
+
+TODO Handling exceptions
+TODO tweets POST
