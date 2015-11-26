@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
 <head>
-    <title>Thymeleafexamples - Spring security</title>
+    <title>Twitter SHARED Zone</title>
     <meta charset="utf-8" />
+    <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}"/>
 </head>
 <body>
-<div th:substituteby="_index::logout"></div>
-<h1>Thymeleafexamples - Spring security</h1>
-<p>This is the <b>shared</b> zone</p>
-<p>Only authenticated users with roles <b>USER</b> or <b>ADMIN</b> are allowed to see this page.</p>
-<p>Different content is shown depending on the role of the authenticated user.</p>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    This content is only shown to <b>administrators</b>.
+<div id="header" th:include="template :: header"></div>
+<div id="logout" th:include="template :: logout"></div>
+<!--<div th:substituteby="template :: logout"></div>-->
+<div id="content">
+
+    <h1>Twitter SHARED Zone</h1>
+    <p>This is the <b>shared</b> zone</p>
+    <p>Only authenticated users with roles <b>USER</b> or <b>ADMIN</b> are allowed to see this page.</p>
+    <p>Different content is shown depending on the role of the authenticated user.</p>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        This content is only shown to <b>administrators</b>.
+    </div>
+    <div sec:authorize="hasRole('ROLE_USER')">
+        This content is only shown to <b>users</b>.
+    </div>
+    <p><a th:href="@{/}">Back to index</a></p>
+
 </div>
-<div sec:authorize="hasRole('ROLE_USER')">
-    This content is only shown to <b>users</b>.
-</div>
-<p><a href="../_index.html" th:href="@{/index}">Back to home page</a></p>
+<div id="footer" th:include="template :: footer"></div>
 </body>
 </html>

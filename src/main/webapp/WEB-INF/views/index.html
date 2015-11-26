@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
 <head>
-    <title>Thymeleafexamples - Spring security</title>
+    <title>DEMO Spring Security 4+ with Thymeleaf</title>
     <meta charset="utf-8" />
+    <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}"/>
 </head>
 <body>
+<div id="header" th:include="template :: header"></div>
 
 <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
     Logged user: <span sec:authentication="name">Bob</span> |
     Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> |
-    <!--href="_index.html"-->
-    <!--<a  th:href="@{/j_spring_security_logout}">Logout</a>-->
-    <a  th:href="@{/logout}">Logout</a>
+    <a th:href="@{/logout}">Logout</a>
+    <br/>
 </div>
 
-<h1>Thymeleafexamples - Spring security</h1>
+<h1>DEMO Spring Security 4+ with Thymeleaf</h1>
 <p>This is a demo of Thymeleaf and Spring-security integration.</p>
 <h2>Private pages</h2>
 <p>This is a public page, but you can navigate to protected pages to trigger authentication.</p>
@@ -29,7 +31,6 @@
 </ul>
 <h2>Exception handling</h2>
 <ul>
-    <!--href="_error.html"-->
     <li>You can <a th:href="@{/simulateError}">simulate an exception</a> to see custom ErrorPage.</li>
 </ul>
 </body>

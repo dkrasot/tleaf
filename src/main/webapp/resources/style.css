@@ -57,3 +57,12 @@ div.errors {
     background-color: #ffcccc;
     border: 2px solid red;
 }
+
+#logout {
+    float: right;
+}
+
+p.error {
+    font-weight: bold;
+    color: red;
+}

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @Controller
-public class TmpSecurityController {
+public class LoginController {
 //    @RequestMapping("/")
 //    public String root(Locale locale) {
 //        return "redirect:/_index";
@@ -16,7 +16,7 @@ public class TmpSecurityController {
 
     @RequestMapping("/index")
     public String index() {
-        return "_index";
+        return "index";
     }
 
     /** User zone index. */
@@ -40,14 +40,14 @@ public class TmpSecurityController {
     /** Login form. */
     @RequestMapping("/login")
     public String login() {
-        return "_login";
+        return "login";
     }
 
     /** Login form with error. */
     @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "_login";
+        return "login";
     }
 
     /** Simulation of an exception. */
@@ -69,7 +69,7 @@ public class TmpSecurityController {
         }
         errorMessage.append("</ul>");
         model.addAttribute("errorMessage", errorMessage.toString());
-        return "_error";
+        return "error";
     }
 
     /** Substitute 'less than' and 'greater than' symbols by its HTML entities. */

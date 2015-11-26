@@ -1,30 +1,17 @@
-<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
-      <!--xmlns:th="http://www.thymeleaf.org"-->
-      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">&ndash;&gt;-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<!--<head th:include="template :: head"></head>-->
 <head>
-    <!--<meta charset="UTF-8">-->
-    <!--charset would give bugs ????-->
-
     <title>Twitter</title>
-    <link rel="shortcut icon"
-          th:href="@{/resources/images/favicon.ico}"/>
-    <link rel="stylesheet"
-          type="text/css"
-          th:href="@{/resources/style.css}"/>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}"/>
 </head>
 <body>
-
 <div id="header" th:include="template :: header"></div>
 
-
-
-
+<!--OLD CODE:-->
 <div sec:authorize="isAuthenticated()"> <!--hasRole('ROLE_ADMIN')-->
     Hello there...<span sec:authentication="name">user-name</span>
     <a th:href="@{/logout}">Logout / Sign Out</a><br/>
@@ -36,43 +23,48 @@
 </div>
 
 
+<!--maybe change isAuth to hasRole ???-->
+<!--<div id="logout" th:include="template :: logout"></div>-->
 
+<!--<div sec:authorize="isAnonymous()">-->
+    <!--You are NOT authorized user!-->
+    <!--<a th:href="@{/login}">Login</a><br/>-->
+<!--</div>-->
 
 <div id="content">
-    <h1>Welcome to T-Leaf!</h1>
 
+    <a th:href="@{/login}">LOGIN - make link with checking non-auth state</a><br/>
 
-
+    <h1>Welcome!</h1>
     <!--<a th:href="@{/tweets}">Tweets</a> |-->
-    <a th:href="@{/profile/signup}">Register</a><br/>
+    <!--<a sec:authorize="isAnonymous()" th:href="@{/profile/signup}" >Sign Up</a><br/>-->
+    <a th:href="@{/profile/signup}" >Sign Up</a><br/>
     <a th:href="@{/tweets}">Tweets</a><br/>
 
-    <br/><a th:href="@{/upload}">TEST Multipart upload</a><br/>
 
-    <!--View <span th:text="${view}">unknown</span>-->
+
+    <p>This is a demo of Thymeleaf and Spring-security integration.</p>
+    <h2>Private pages</h2>
+    <p>This is a public page, but you can navigate to protected pages to trigger authentication.</p>
+    <ul>
+        <!--href="admin/index.html" href="user/index.html" href="user/index.html"-->
+        <li>Go to <a th:href="@{/admin/index}">administration zone</a> (only admins)</li>
+        <li>Go to <a th:href="@{/user/index}">user zone</a> (only users)</li>
+        <li>Go to <a th:href="@{/shared/index}">shared zone</a> (both users and admins)</li>
+    </ul>
+    <h2>Exception handling</h2>
+    <ul>
+        <li>You can <a th:href="@{/simulateError}">simulate an exception</a> to see custom ErrorPage.</li>
+    </ul>
+
+
+
+    <br/>
+    <a th:href="@{/index}">INDEX (testing Spring Security)</a><br/>
+    <!--todo TODEL index.html-->
+    <a th:href="@{/upload}">UPLOAD (testing Multipart upload)</a><br/>
+
 </div>
-
-
 <div id="footer" th:include="template :: footer"></div>
 </body>
 </html>
-
-<!--NOW LINKS-->
-<!--GET /-->
-<!--GET /tweets-->
-<!--... now without view ... /tweets/{tweetId}-->
-<!--GET POST /profile/signup-->
-<!--GET /profile/{username}-->
-
-<!--TODO LINKS-->
-<!--POST /login-->
-<!--GET /login?error or /login-error-->
-<!--GET /logout-->
-<!--GET POST /signup (change from /profile/signup )-->
-<!--GET PUT /me (profile of auth user)-->
-<!--for ADMIN:-->
-<!--GET /admin-->
-<!--GET POST /admin/userList-->
-<!--GET POST PUT /admin/userList/{username}-->
-<!--GET POST /admin/userList/{username}/tweetList-->
-<!--GET POST PUT /admin/userList/{username}/tweetList/{tweetId}-->

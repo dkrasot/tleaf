@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Twitter ADMIN Zone</title>
+    <title>Twitter - Error page</title>
     <meta charset="utf-8" />
     <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}"/>
 </head>
 <body>
 <div id="header" th:include="template :: header"></div>
-<div id="logout" th:include="template :: logout"></div>
-<!--<div th:substituteby="template :: logout"></div>-->
 <div id="content">
 
-    <h1>Twitter ADMIN Zone</h1>
-    <p>This is the <b>administration</b> zone</p>
-    <p>Only authenticated users with role <b>ADMIN</b> are allowed to see this page.</p>
-    <p><a th:href="@{/}">Back to index</a></p>
+    <h1 th:text="${errorCode}">404</h1>
+    <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+
+    <br/><a th:href="@{/}">To main page</a>
 
 </div>
 <div id="footer" th:include="template :: footer"></div>

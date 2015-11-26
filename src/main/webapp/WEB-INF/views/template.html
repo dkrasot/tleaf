@@ -1,24 +1,28 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<head th:fragment="head">-->
-<!--<title>Twitter</title>-->
-<!--<link rel="shortcut icon"-->
-<!--th:href="@{/resources/images/favicon.ico}"/>-->
-<!--<link rel="stylesheet"-->
-<!--type="text/css"-->
-<!--th:href="@{/resources/style.css}"/>-->
+    <!--<title>Twitter</title>-->
+    <!--<link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}"/>-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}"/>-->
 <!--</head>-->
 
 <body>
-<div th:fragment="header">
-    <a th:href="@{/}">
-        <img th:src="@{/resources/images/twitter_logo_wide.png}" border="0" th:width="300" th:height="100"/>
-    </a>
-</div>
+    <div th:fragment="header">
+        <a th:href="@{/}">
+            <img th:src="@{/resources/images/twitter_logo_wide.png}" border="0" th:width="300" th:height="100"/>
+        </a>
+    </div>
 
-<div>Content would be there</div>
+    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+        Logged user: <span sec:authentication="name">Bob</span> |
+        <!--TODO FIX BUG WITH principal.authorities FOR ANONYMOUS-->
+        Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> |
+        <a th:href="@{/logout}">Logout</a>
+        <br/><br/><br/>
+    </div>
 
-<div th:fragment="footer">Copyright &copy; Dmytro Krasota</div>
+    <!--<div>Content would be there</div>-->
+
+    <div th:fragment="footer"><br/>Copyright &copy; Dmytro Krasota</div>
 </body>
-
 </html>
