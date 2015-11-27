@@ -80,8 +80,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        //set views for exception
 //        Properties mapping = new Properties();
 //        mapping.put("java.lang.Throwable", "error");
-//        //NPE? RuntimeE? IOE?//
-//        // TODO CHECK for subclasses of Throwable handling
 //        resolver.setExceptionMappings(mapping);
 //        return resolver;
 //    }

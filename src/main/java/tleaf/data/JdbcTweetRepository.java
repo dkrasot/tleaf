@@ -44,7 +44,6 @@ public class JdbcTweetRepository implements TweetRepository {
                         " from Tweets" +
                         " where id < ?" +
                         " order by created_at desc limit ?",
-// TODO? Get away hardcode + check count >0 ??limit 20 -> limit count??
                 new TweetRowMapper(), max, count);
     }
 

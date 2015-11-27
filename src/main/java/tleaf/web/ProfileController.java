@@ -34,6 +34,7 @@ public class ProfileController {
         return "signUp";
     }
 
+    //DISABLED
     //@RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String processRegistrationWithFile(@RequestPart(value = "profilePicture") MultipartFile profilePicture,
                                        @Valid Profile profile,
@@ -45,29 +46,23 @@ public class ProfileController {
         }
         repository.save(profile);
         profilePicture.transferTo(new File(profilePicture.getOriginalFilename()));
-        //profilePicture.transferTo(new File("/tmp/demo-leaf/"+ user.getUsername() + ".jpg"));
-        //TODO Later - resolve problem with multipart-requests on GlassFish server - maybe try CommonsMultipartResolver ...
-        // WebSphere is fine with StandardSMPResolver
-
-        //GlassFish - file creating at this directory: glassfish4\glassfish\domains\domain1\generated\jsp\Tleaf-1.0-SNAPSHOT
-        //TODO send Image path for viewing in profile.html ?
         redirectAttributes.addAttribute("username", profile.getUsername());
         redirectAttributes.addFlashAttribute(profile);
         return "redirect:/profile/{username}";
-// if we add another attr by addAttribute (userId) but don't write it to redirect' {} we will get redirect:/user/USERNAME?userId=25
     }
 
-    //@RequestPart(value = "profilePicture", required=false) Part fileBytes
-//1. Part - alternative to MultipartFile for Servlet 3.0+ containers
-// we don't need configuring of StandardServletMultipartResolver bean if using Part instead of MultipartFile
-
-//better implementation of POST with File
-//for Enabling uncomment @ReqMapping + signUp.html ( form enctype="multipart/form-data" + input file )
+    //DISABLED
     //@RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String processRegistration(@Valid ProfileForm profileForm,
                                       Errors errors, //BindingResult can be used instead of Errors
                                       RedirectAttributes redirectAttributes)
             throws IllegalStateException, IOException {
+        //@RequestPart(value = "profilePicture", required=false) Part fileBytes
+//1. Part - alternative to MultipartFile for Servlet 3.0+ containers
+// we don't need configuring of StandardServletMultipartResolver bean if using Part instead of MultipartFile
+
+//better implementation of POST with File
+//for Enabling uncomment @ReqMapping + signUp.html ( form enctype="multipart/form-data" + input file )
         if (errors.hasErrors()) {
             return "signUp";
         }
@@ -78,11 +73,11 @@ public class ProfileController {
 
         profilePicture.transferTo(new File(profilePicture.getOriginalFilename()));
         //profilePicture.transferTo(new File("/tmp/demo-leaf/"+ user.getUsername() + ".jpg"));
-        //TODO Later - resolve problem with multipart-requests on GlassFish server - maybe try CommonsMultipartResolver ...
+        //TODO MULTIPART? 0 resolve problem with multipart-requests on GlassFish server - maybe try CommonsMultipartResolver ...
         // WebSphere is fine with StandardSMPResolver
 
         //GlassFish - file creating at this directory: glassfish4\glassfish\domains\domain1\generated\jsp\Tleaf-1.0-SNAPSHOT
-        //TODO send Image path for viewing in profile.html?
+        //TODO MULTIPART? 0 send Image path for viewing in profile.html?
         redirectAttributes.addAttribute("username", profile.getUsername());
         redirectAttributes.addFlashAttribute(profile);
         return "redirect:/profile/{username}";

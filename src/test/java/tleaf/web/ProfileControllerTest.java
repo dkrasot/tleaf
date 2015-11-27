@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 
 public class ProfileControllerTest {
 
-    // TODO TEST THIS? /profile/signup for signing up + /profile/{username} where username=signup >>> ambiguity
+    // TODO JUNIT 1 TEST THIS? /profile/signup for signing up + /profile/{username} where username=signup >>> ambiguity
     // make controller of /signup apart?
 
 // 2nd scheme of mocking
@@ -85,7 +85,7 @@ public class ProfileControllerTest {
                 .andExpect(model().attributeHasFieldErrors("profile","username", "password", "email"));//Profile and fields list:
     }
 
-// TODO check MULTIPART request - file upload ... MAKE IT in other Test class
+// TODO MULTIPART 0 check MULTIPART REQUEST in separate Test class
 //    @Test
 //    public void when_Http_Post_Correct_File() throws Exception {
 //

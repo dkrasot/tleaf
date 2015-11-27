@@ -64,7 +64,7 @@ public class TweetControllerTest {
     }
 
 
-    //TODO make view for single tweet "tweet.html" - now test would be failed
+    //TODO HTML 1 make view for single tweet "tweet.html" - now test would be failed
     @Ignore
     @Test
     public void showingSingleTweet() throws Exception {

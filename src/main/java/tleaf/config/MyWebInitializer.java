@@ -10,12 +10,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-//Alternative to web.xml - needs Servlet 3.0+
-// creates DispatcherServlet (using getServletCC (WebConfig) for creating Spring app ctx)
-// and ContextLoaderListener (using getRootCC -> 2nd app ctx )
 
 public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
@@ -43,8 +39,10 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
     // ServletRegistration.Dynamic supports configuring of:
     // multipart-requests by setMultipartConfig(), load priorities by setLoadOnStartup(), init params by setInitParameter()
 
+// maybe would add XML configs:
 
-    //TODO make Java config of SpringSecurity orr add XML config:
+// @ImportResource( {"classpath:CONFIG_NAME.xml",...} ) or :
+
 //    @Override
 //    public void onStartup(ServletContext servletContext) throws ServletException {
 //        XmlWebApplicationContext applicationContext = new XmlWebApplicationContext();

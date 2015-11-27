@@ -14,10 +14,10 @@ public class LoginController {
 //        return "redirect:/_index";
 //    }
 
-    @RequestMapping("/index")
-    public String index() {
-        return "index";
-    }
+//    @RequestMapping("/index")
+//    public String index() {
+//        return "index";
+//    }
 
     /** User zone index. */
     @RequestMapping("/user/index")

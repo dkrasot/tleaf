@@ -1,24 +1,122 @@
-    TEMPORARY; del after DEBUG SPRING SECURITY
+        INITIALIZER
+
+    TLEAF.CONFIG.MyWebInitializer (extends AbstractAnnotationConfigDispatcherServletInitializer)
+Alternative to web.xml - needs Servlet 3.0+
+using getServletCC (WebConfig) for creating Spring app ctx) and ContextLoaderListener (using getRootCC -> 2nd app ctx )
+- AUTO creates DispatcherServlet
+- get configs: WebConfig.class, RootConfig.class, SecurityConfig.class
+- map DispatcherServlet to "/"
+- enable MultipartConfigElement("/", 2097152, 4194304, 0)
+
+    TLEAF.CONFIG.RootConfig
+- ComponentScan TLEAF package + ignore TLEAF.WEB package
+- @Import(DataConfig.class)
+
+        DATA
+
+    TLEAF.CONFIG.DataConfig
+- DataSource + JdbcTemplate enabling
+
+        DATA - JDBC
+
+    TLEAF.DATA.ProfileRepository + TLEAF.DATA.JdbcProfileRepository
+    TLEAF.DATA.TweetRepository + TLEAF.DATA.JdbcTweetRepository
+
+        WEB
+
+    TLEAF.WEB.WebConfig
+- ThymeleafViewResolver /WEB-INF/views/ XXX .html  + SpringSecurityDialect()
+- addResourceHandler /resources/**
+- init StandardServletMultipartResolver
+- @EnableWebMvc
+- @ComponentScan(basePackages = {"tleaf.web"})
+
+    TLEAF.WEB.{Controller}
+HomeController:
+    /
+UploadController
+    /upload - multipart file uploading
+ProfileController (USING ProfileRepository)
+    /profile/signUp - Sign up form
+    /profile/{username} - confirmation of Sign Up
+TweetController (USING TweetRepository)
+    /tweets
+    /tweet/{tweetId}
+LoginController:
+    /login /login-error - check login/password
+    /user/index /admin/index /shared/index - Spring Security - demonstrating checking authorities of users
+    /simulateError - demonstrating of Exception for handling
+    /error - error page
+
+    TLEAF.Profile + TLEAF.WEB.ProfileForm
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! eMail validator is not working
+users profile(account/principal) : id, username, password, email
+
+    TLEAF.Tweet + TLEAF.WEB.TweetForm
+id, message, creationDate
+
+
+        EXCEPTION HANDLING
+
+    TLEAF.EXCEPTIONS.AppWideExceptionHandler
+@ExceptionHandler(DuplicateTweetException.class
+
+
+
+        ERROR HANDLING
+
+catching exceptions and HTTP errors: LoginController @RequestMapping("/error")
++ webapp/WEB-INF/views/error.html
++ web.xml <error-page>
+
+
+        SPRING SECURITY
+
+    TLEAF.CONFIG.SecurityWebInitializer (extends AbstractSecurityWebApplicationInitializer)
+
+- AUTO springSecurityFilterChain is mapped to “/*”
+- AUTO springSecurityFilterChain uses the dispatch types of ERROR and REQUEST
+- AUTO The springSecurityFilterChain mapping is inserted before any servlet Filter mappings that have already been configured
+//Alternative in XML-configuration:
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    TLEAF.CONFIG.SecurityConfig
+- inMemoryAuthentication user/demo admin/demo useradmin/demo
+- ignoring /resources/**
+- CSRF disable
+- authorize requests
+- login form (/login) + logout
+
+
+        METHOD SECURITY
+
+temporary disabled: TLEAF.CONFIG.MethodSecurityConfig
+
+
+
+
+            TO DO:
+
+
+TODO ??? DELETE after DEBUG SPRING SECURITY
 + added views for Spring Security enabling: admin\, shared\, user\index.html, _error, _index, _login
 + web.TmpSecurityController
-
-TODO ENABLE SPRING SECURITY +login form; logout; error page
-?Java config or xml?
-? exception handling to ERROR page?
 
 EXAMPLE 1:
 https://github.com/dkrasot/demo-thyme-security/tree/master/src/main/webapp/WEB-INF
 
-TODO write test for UploadController
+TODO TEST 0 write test for UploadController
 
-TODO Handling exceptions
-error.html + /error in LoginController
-
-+ ???
-    WebConfig - SimpleMappingExceptionResolver
-    web.xml - error-page
-
-EXAMPLE:
+EXAMPLE of Handling exceptions:
 in SecurityConfig:
                     and().exceptionHandling().accessDeniedPage("/403")
 in Controller:
@@ -27,30 +125,47 @@ in Controller:
                         return "errors/403";
                     }
 
-TODO add RememberMe??
+TODO SECURITY 0 add RememberMe??
 
-TODO tweets POST
-
-    NOW LINKS
+    NOW LINKS:
 GET /
-GET /tweets
+GET POST /tweets
 GET POST /profile/signup
 GET /profile/{username}
 GET POST /login
+GET /login?error or /login-error
 GET /logout
 GET /index x4
+GET /error
 
-TODO NEXT LINKS
+    TO DO NEXT LINKS:
 
-GET /tweets/{tweetId} TODO add tweet.html
-GET /login?error or /login-error
-GET POST /signup (change from /profile/signup ) TODO /profile/signUp to signUp
+GET /tweets/{tweetId} TODO HTML 1 view single tweet.html
+GET POST /signup (change from /profile/signup ) TODO HTML ... /profile/signUp to signUp
 GET PUT /me (profile of auth user)
-    for ADMIN:
+    TODO HTML 0 create admin pages after creating REST service?
 GET /admin
 GET POST /admin/userList
 GET POST PUT /admin/userList/{username}
 GET POST /admin/userList/{username}/tweetList
 GET POST PUT /admin/userList/{username}/tweetList/{tweetId}
 
-TODO enable EMAIL validation (Hibernate validate is n't working NOW)
+
+            LINKS
+Error handling ( via resolver )
+http://stackoverflow.com/questions/19281391/error-page-configuration-in-spring-mvc-javaconfig-webapp-no-web-xml
+
+REST (2 configs for Login (Spring Security)
+http://stackoverflow.com/questions/27774742/spring-security-http-basic-for-restful-and-formlogin-cookies-for-web-annotat
+
+
+            FIXES
+
+FROM th:include TO th:replace (include ignored sec:authorize="isAuthenticated()" )
+
+Spring Security login/logout links for 4th version:
+FROM /j_spring_security_check; /j_spring_security_logout   TO /login; /logout
+
+'principal.authorities' - поменял на 'authorities'
+FROM <span sec:authentication="principal.authorities">
+TO <span sec:authentication="authorities">

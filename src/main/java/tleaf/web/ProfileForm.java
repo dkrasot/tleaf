@@ -17,6 +17,7 @@ public class ProfileForm {
     @Size(min=5, max=25, message="{password.size}")
     private String password;
 
+    //TODO VALIDATOR 2 enable EMAIL validation (Hibernate validate is n't working NOW)
     @NotNull
     @Email(message="Please provide a valid email address")
     private String email;
