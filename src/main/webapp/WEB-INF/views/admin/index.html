@@ -8,8 +8,7 @@
 </head>
 <body>
 <div id="header" th:include="template :: header"></div>
-<div id="logout" th:include="template :: logout"></div>
-<!--<div th:substituteby="template :: logout"></div>-->
+<div id="logout" th:include="replace :: logout"></div>
 <div id="content">
 
     <h1>Twitter ADMIN Zone</h1>

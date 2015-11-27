@@ -13,10 +13,14 @@
         </a>
     </div>
 
+    <!--hasAnyRole('ROLE_USER','ROLE_ADMIN')-->
+    <!--isAuthenticated() isn't rendering for Anonymous user-->
+    <!--isFullyAuthenticated() isn't rendering for Anonymous and Remember-me user-->
+    <!--th:substituteby was deprecated - need to use th:replace-->
     <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+        frag auth::
         Logged user: <span sec:authentication="name">Bob</span> |
-        <!--TODO FIX BUG WITH principal.authorities FOR ANONYMOUS-->
-        Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> |
+        Roles: <span sec:authentication="authorities">[ROLE_USER, ROLE_ADMIN]</span> |
         <a th:href="@{/logout}">Logout</a>
         <br/><br/><br/>
     </div>

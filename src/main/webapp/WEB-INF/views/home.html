@@ -10,8 +10,8 @@
 </head>
 <body>
 <div id="header" th:include="template :: header"></div>
+<div id="logout" th:replace="template :: logout"></div>
 
-<!--OLD CODE:-->
 <div sec:authorize="isAuthenticated()"> <!--hasRole('ROLE_ADMIN')-->
     Hello there...<span sec:authentication="name">user-name</span>
     <a th:href="@{/logout}">Logout / Sign Out</a><br/>
@@ -22,6 +22,22 @@
     <a th:href="@{/login}">Login / Sign In</a><br/>
 </div>
 
+
+<div sec:authorize="hasRole('ROLE_USER')">
+    <br/>home hasRole('ROLE_USER')<br/>
+</div>
+
+<div sec:authorize="isAuthenticated()">
+    <br/>home isAuthenticated<br/>
+</div>
+
+<div sec:authorize="isFullyAuthenticated()">
+    <br/>home isFullyAuthenticated()<br/>
+</div>
+
+<div sec:authorize="isAnonymous()">
+    <br/>home isAnonymous()<br/>
+</div>
 
 <!--maybe change isAuth to hasRole ???-->
 <!--<div id="logout" th:include="template :: logout"></div>-->
