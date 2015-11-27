@@ -9,13 +9,27 @@ TODO ENABLE SPRING SECURITY +login form; logout; error page
 EXAMPLE 1:
 https://github.com/dkrasot/demo-thyme-security/tree/master/src/main/webapp/WEB-INF
 
-
-
 TODO write test for UploadController
 
 TODO Handling exceptions
-TODO tweets POST
+error.html + /error in LoginController
 
++ ???
+    WebConfig - SimpleMappingExceptionResolver
+    web.xml - error-page
+
+EXAMPLE:
+in SecurityConfig:
+                    and().exceptionHandling().accessDeniedPage("/403")
+in Controller:
+                    @RequestMapping("/403")
+                    public String accessDenied() {
+                        return "errors/403";
+                    }
+
+TODO add RememberMe??
+
+TODO tweets POST
 
     NOW LINKS
 GET /
@@ -39,5 +53,4 @@ GET POST PUT /admin/userList/{username}
 GET POST /admin/userList/{username}/tweetList
 GET POST PUT /admin/userList/{username}/tweetList/{tweetId}
 
-
-/logout in 4th : For SpringSecurity 3 and less: @{/j_spring_security_logout}
+TODO enable EMAIL validation (Hibernate validate is n't working NOW)

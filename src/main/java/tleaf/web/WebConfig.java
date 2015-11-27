@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -17,6 +18,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 import java.io.IOException;
+import java.util.Properties;
 
 //changed Spring3 and SprSecurity3 to 4 version
 
@@ -61,6 +63,29 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/").addResourceLocations("/resources/**");
     }
+
+
+    // resolver as solution for Exception handling
+//    @Bean
+//    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
+//        SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();
+//        // OR also can use method setStatusCodes(properties)
+//        //resolver.addStatusCode(viewName, statusCode);
+//        resolver.addStatusCode("error",404);
+//        resolver.addStatusCode("error",400);
+//        resolver.addStatusCode("error",401);
+//        resolver.addStatusCode("error",403);
+//        resolver.addStatusCode("error",500);
+//        resolver.addStatusCode("error",503);
+//        //set views for exception
+//        Properties mapping = new Properties();
+//        mapping.put("java.lang.Throwable", "error");
+//        //NPE? RuntimeE? IOE?//
+//        // TODO CHECK for subclasses of Throwable handling
+//        resolver.setExceptionMappings(mapping);
+//        return resolver;
+//    }
+
 
 //    @Controller
 //    static class FavIconController {

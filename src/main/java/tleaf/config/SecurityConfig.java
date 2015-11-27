@@ -48,74 +48,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
+        http.authorizeRequests()
+                .antMatchers("/","/profile/**").permitAll() // TODO /profile/signUp to /signUp or /register
+                .antMatchers(HttpMethod.POST, "/tweets").authenticated()
+                .antMatchers(HttpMethod.GET, "/tweets").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/shared/**").hasAnyRole("USER", "ADMIN")
+                //.antMatchers("/me").authenticated() //TODO create PROFILE page "/me" of logged user
+                //.antMatchers("/upload").hasRole("ADMIN")
+                .anyRequest().authenticated();
+                //.anyRequest().permitAll();
+//.antMatchers("/admin").access("isAuthenticated() and principal.username=='admin'")
+//.access("hasRole('ROLE_ADMIN') and hasIpAdress('192.168.1.2')")//example with SpEL
+
         http.formLogin()
                 .loginPage("/login")
-                //.loginProcessingUrl("/j_spring_security_check")
-//                .defaultSuccessUrl("/index")
                 .defaultSuccessUrl("/")
                 .failureUrl("/login-error")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll();
-
-//        http.logout()
-//                //.logoutUrl("/logout") //default?
-//                .logoutSuccessUrl("/")
-//                .permitAll();
-                //.invalidateHttpSession(true);  //??? cancelling Session
         http.logout()
                 .permitAll()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                        //.logoutSuccessUrl("/login?logout")
+                //.logoutSuccessUrl("/")
                 .invalidateHttpSession(true);
 
-        //org.springframework.security.authentication.AnonymousAuthenticationToken
-        //'principal.authorities' with anonymous user
-        //TODO FIX THIS page : .antMatchers("/").authenticated() for ANONYMOUS user
-
-        http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/shared/**").hasAnyRole("USER", "ADMIN")
-
-
-                //.antMatchers("/").authenticated()
-                .antMatchers("/").permitAll()
-
-
-                //.antMatchers("/profile/**").permitAll()
-                .antMatchers("/me").authenticated() //todo create PROFILE page "/me" of logged user
-                .antMatchers(HttpMethod.POST, "/tweets").authenticated()
-                //.antMatchers("/upload").hasRole("ADMIN")
-                .anyRequest().permitAll();//.authenticated();
-
-                //.antMatchers("/admin").access("isAuthenticated() and principal.username=='admin'")
-                //.access("hasRole('ROLE_ADMIN') and hasIpAdress('192.168.1.2')")//example with SpEL
+        //http.exceptionHandling().accessDeniedPage("/error"); // HANDLE only 403 NO ACCESS ..
 
 //.and().httpBasic().realmName("TLeaf") ????
 //.and().rememberMe().tokenRepository(new InMemoryTokenRepositoryImpl()).tokenValiditySeconds(2419200).key("tleafKey")
-
-//VERSION 25/11/2015
-
-//        http.logout()
-//                .logoutSuccessUrl("/")
-//                .permitAll();
-//        http.authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/user/**").hasRole("USER")
-//                .antMatchers("/shared/**").hasAnyRole("USER","ADMIN")
-//
-//                .antMatchers("/").authenticated()
-//                .antMatchers("/me").authenticated()
-//                //.antMatchers(HttpMethod.POST, "/tweets").authenticated()
-//                .anyRequest().permitAll();
-//        http.logout()
-//                .permitAll()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/login?logout")
-//                .invalidateHttpSession(true);
-
 
     }
 

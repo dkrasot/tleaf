@@ -49,12 +49,10 @@
 
 <div id="content">
 
-    <a th:href="@{/login}">LOGIN - make link with checking non-auth state</a><br/>
-
     <h1>Welcome!</h1>
     <!--<a th:href="@{/tweets}">Tweets</a> |-->
-    <!--<a sec:authorize="isAnonymous()" th:href="@{/profile/signup}" >Sign Up</a><br/>-->
-    <a th:href="@{/profile/signup}" >Sign Up</a><br/>
+    <a sec:authorize="isAnonymous()" th:href="@{/profile/signup}" >Sign Up</a><br/>
+    <!--<a th:href="@{/profile/signup}" >Sign Up</a><br/>-->
     <a th:href="@{/tweets}">Tweets</a><br/>
 
 
@@ -63,7 +61,6 @@
     <h2>Private pages</h2>
     <p>This is a public page, but you can navigate to protected pages to trigger authentication.</p>
     <ul>
-        <!--href="admin/index.html" href="user/index.html" href="user/index.html"-->
         <li>Go to <a th:href="@{/admin/index}">administration zone</a> (only admins)</li>
         <li>Go to <a th:href="@{/user/index}">user zone</a> (only users)</li>
         <li>Go to <a th:href="@{/shared/index}">shared zone</a> (both users and admins)</li>
@@ -73,13 +70,9 @@
         <li>You can <a th:href="@{/simulateError}">simulate an exception</a> to see custom ErrorPage.</li>
     </ul>
 
-
-
     <br/>
-    <a th:href="@{/index}">INDEX (testing Spring Security)</a><br/>
-    <!--todo TODEL index.html-->
     <a th:href="@{/upload}">UPLOAD (testing Multipart upload)</a><br/>
-
+    <a th:href="@{/404}">LINK to 404</a><br/>
 </div>
 <div id="footer" th:include="template :: footer"></div>
 </body>
