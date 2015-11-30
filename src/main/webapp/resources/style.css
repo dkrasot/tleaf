@@ -66,3 +66,9 @@ p.error {
     font-weight: bold;
     color: red;
 }
+
+div.validation {
+    color: #D63301;
+    background-color: #FFCCBA;
+    /*background-image: url('validation.png');*/
+}
