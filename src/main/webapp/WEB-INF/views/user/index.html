@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Twitter USER Zone</title>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}"/>
+<head th:include="template :: headTemplate">
+    <title id="pageTitle">Twitter - USER Zone</title>
 </head>
 <body>
 <div id="header" th:include="template :: header"></div>
