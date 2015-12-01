@@ -1,5 +1,6 @@
 package tleaf.web;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 public class UploadControllerTest {
 
+    @Ignore //test works at home PC only.
     @Test
     public void shouldProcessUploading() throws Exception {
 
@@ -25,8 +27,6 @@ public class UploadControllerTest {
         ProfileController controller = new ProfileController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller).build();
 
-        //File file = new File("\\test\\resources\\testImage.jpg");
-        //File file = new File("\\testImage.jpg");
         File file = new File("D:\\Java\\ideaProjects\\tleaf\\src\\test\\resources\\testImage.jpg");
         //Logic creating and populating file
 
@@ -42,4 +42,6 @@ public class UploadControllerTest {
                 .andExpect(model().attributeHasNoErrors("file"));
 
     }
+
+    //TODO Test Multipart Request
 }

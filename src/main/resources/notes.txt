@@ -169,3 +169,7 @@ FROM /j_spring_security_check; /j_spring_security_logout   TO /login; /logout
 'principal.authorities' - поменял на 'authorities'
 FROM <span sec:authentication="principal.authorities">
 TO <span sec:authentication="authorities">
+
+
+GIT???
+check merging
