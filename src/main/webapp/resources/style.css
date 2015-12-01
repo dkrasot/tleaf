@@ -62,6 +62,11 @@ div.errors {
     float: right;
 }
 
+/*p.errors {*/
+    /*background-color: #ffcccc;*/
+    /*border: 2px solid red;*/
+    /*font-weight: bold;*/
+/*}*/
 p.error {
     font-weight: bold;
     color: red;

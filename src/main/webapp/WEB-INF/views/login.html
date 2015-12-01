@@ -20,24 +20,34 @@
 <body>
 <div id="header" th:include="template :: header"></div>
 
-<div class="container" style="width: 300px;">
+<div id="header2" th:include="template :: header"></div>
+
+<div class="container" style="width: 450px;">
+    <!--was 300px-->
 
     <p>Example administrator: admin / demo</p>
     <p>Example user: user / demo</p>
     <p>Example user and administrator: useradmin / demo</p>
 
-    <p th:if="${loginError}" class="error">Wrong user or password</p>
+    <!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
     <!--<div class="validation"><p th:if="${loginError}">Wrong user or password</p></div>-->
     <form th:action="@{/login}" method="post">
 
         <h2 class="form-signin-heading">Login</h2>
+
+        <div class="errors" th:if="${loginError}">
+            <p >You've entered the wrong username or password. Please try again.</p>
+        </div>
+        <br/>
 
         <label for="username">Username</label>:
         <input type="text" id="username" name="username" autofocus="autofocus"/><br/>
         <label for="password">Password</label>:
         <input type="password" id="password" name="password"/> <br/>
 
+        <!--<div class="errors" th:if="${loginError}">-->
         <!--<input type="submit" value="Log in" />-->
+        <br/>
         <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login to Tleaf"/>
 
     </form>
