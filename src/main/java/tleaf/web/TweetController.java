@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import tleaf.Tweet;
 import tleaf.data.TweetRepository;
-import tleaf.exceptions.DuplicateTweetException;
-import tleaf.exceptions.TweetNotFoundException;
+import tleaf.exception.DuplicateTweetException;
+import tleaf.exception.TweetNotFoundException;
 
 import javax.validation.Valid;
 import java.util.Date;

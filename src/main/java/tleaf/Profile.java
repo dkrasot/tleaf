@@ -4,6 +4,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.web.multipart.MultipartFile;
+import tleaf.validate.EmailValidator;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,7 +25,7 @@ public class Profile {
     private String password;
 
     @NotNull
-    @Email(message = "Please provide a valid email address")
+    @EmailValidator
     private String email;
 
 

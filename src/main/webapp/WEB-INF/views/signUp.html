@@ -25,9 +25,9 @@
                <!--th:class="${#fields.hasErrors('lastName')}? 'error'" /><br/>-->
 
         <label th:class="${#fields.hasErrors('email')}? 'error'">Email</label>:
-        <input type="email" th:field="*{email}" placeholder="your@email"
+        <input type="email" th:field="*{email}"
                th:class="${#fields.hasErrors('email')}? 'error'" /><br/>
-
+        <!--placeholder="your@email"-->
         <label th:class="${#fields.hasErrors('username')}? 'error'">Username</label>:
         <input type="text" th:field="*{username}"
                th:class="${#fields.hasErrors('username')}? 'error'" /><br/>

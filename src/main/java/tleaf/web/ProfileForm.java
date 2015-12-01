@@ -3,6 +3,7 @@ package tleaf.web;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.web.multipart.MultipartFile;
 import tleaf.Profile;
+import tleaf.validate.EmailValidator;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,7 +20,7 @@ public class ProfileForm {
 
     //TODO VALIDATOR 2 enable EMAIL validation (Hibernate validate is n't working NOW)
     @NotNull
-    @Email(message="Please provide a valid email address")
+    @EmailValidator
     private String email;
 
     private MultipartFile profilePicture;
