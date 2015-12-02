@@ -21,9 +21,6 @@ import static org.mockito.Mockito.*;
 
 public class ProfileControllerTest {
 
-    // TODO JUNIT 1 TEST THIS? /profile/signup for signing up + /profile/{username} where username=signup >>> ambiguity
-    // make controller of /signup apart?
-
 // 2nd scheme of mocking
 //    @Mock
 //    private ProfileRepository mockRepository; OR some service
@@ -40,7 +37,7 @@ public class ProfileControllerTest {
         ProfileController controller = new ProfileController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller).build();
 
-        mockMvc.perform(get("/profile/signup"))
+        mockMvc.perform(get("/signup"))
                 .andExpect(view().name("signUp"));
     }
 
@@ -55,7 +52,7 @@ public class ProfileControllerTest {
         ProfileController controller = new ProfileController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller).build();
 
-        mockMvc.perform(post("/profile/signup")
+        mockMvc.perform(post("/signup")
                 .param("username", "jbauer")
                 .param("password", "24hours")
                 .param("email", "jbauer@ctu.gov"))
@@ -78,11 +75,10 @@ public class ProfileControllerTest {
         ProfileController controller = new ProfileController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller).build();
 
-        mockMvc.perform(post("/profile/signup"))
+        mockMvc.perform(post("/signup"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("signUp"))
                 .andExpect(model().errorCount(3))
                 .andExpect(model().attributeHasFieldErrors("profile","username", "password", "email"));//Profile and fields list:
     }
-
 }

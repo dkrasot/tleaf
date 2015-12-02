@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 
 //Please provide a valid email address
 @Email(message = "Please provide a valid email address")
-//TODO connect to variable {email.error} from ValidationMessages.properties
+//TODO @EmailValidator - connect to variable {email.error} from ValidationMessages.properties
 @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
         message = "Please provide a valid email address")
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER})

@@ -49,16 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/","/profile/**").permitAll() // TODO (A) ??? 1 /profile/signUp -> /signUp or /register
+                .antMatchers("/","/signup","/profile/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/tweets").authenticated()
                 .antMatchers(HttpMethod.GET, "/tweets").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/shared/**").hasAnyRole("USER", "ADMIN")
-                //.antMatchers("/me").authenticated() //TODO HTML 1 create PROFILE page "/me" OR /{username} of logged user
                 //.antMatchers("/upload").hasRole("ADMIN")
                 .anyRequest().authenticated();
-                //.anyRequest().permitAll();
 //.antMatchers("/admin").access("isAuthenticated() and principal.username=='admin'")
 //.access("hasRole('ROLE_ADMIN') and hasIpAdress('192.168.1.2')")//example with SpEL
 
@@ -82,9 +80,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-
-
-    //TODO?  CSRF 0 make CSRF-token support later...
 // to remember: WITH CSRF LOGOUT must be with POST-request
 //    <c:url var="logoutUrl" value="/logout"/>
 //    <form action="${logoutUrl}" method="post">

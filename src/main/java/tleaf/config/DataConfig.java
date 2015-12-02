@@ -20,7 +20,6 @@ public class DataConfig {
                 .build();
     }
 
-    // TODO @Profile 0 create multiple profiles: @Profile - @Dev @Prod @Test annotations
     // https://spring.io/blog/2011/02/14/spring-3-1-m1-introducing-profile/
 
     //    @Profile("test") - BasicDataSource with ConnectionPool; @Profile("prod") - some remote server - JNDI or MySQL or Oracle

@@ -19,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/profile")
+//@RequestMapping("/profile")
 public class ProfileController {
     private ProfileRepository repository;
 
@@ -86,18 +86,14 @@ public class ProfileController {
         MultipartFile profilePicture = profileForm.getProfilePicture();
 
         profilePicture.transferTo(new File(profilePicture.getOriginalFilename()));
-        //profilePicture.transferTo(new File("/tmp/demo-leaf/"+ user.getUsername() + ".jpg"));
-        //TODO MULTIPART? 0 resolve problem with multipart-requests on GlassFish server - maybe try CommonsMultipartResolver ...
-        // WebSphere is fine with StandardSMPResolver
-
-        //GlassFish - file creating at this directory: glassfish4\glassfish\domains\domain1\generated\jsp\Tleaf-1.0-SNAPSHOT
-        //TODO MULTIPART ??? send Image path for viewing in profile.html?
+        // GlassFish with CommonsMultipartResolver ??? WebSphere is fine with StandardSMPResolver
+        // GlassFish - file creating at this directory: glassfish4\glassfish\domains\domain1\generated\jsp\Tleaf-1.0-SNAPSHOT
         redirectAttributes.addAttribute("username", profile.getUsername());
         redirectAttributes.addFlashAttribute(profile);
         return "redirect:/profile/{username}";
     }
 
-    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile/{username}", method = RequestMethod.GET)
     public String showUserProfile(@PathVariable String username, Model model) {
         // checking Model for FLASH attr userProfile - if absent -> select from REPO
         if (!model.containsAttribute("profile")) {

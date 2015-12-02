@@ -123,12 +123,23 @@ in Controller:
                         return "errors/403";
                     }
 
+TODO JDBC - fix problem with creating 2 profiles with same name - check before inserting
+
+
 TODO SECURITY 0 RememberMe??
+TODO? SECURITY - CSRF 0 make CSRF-token support later...
+TODO @Profile 0 create multiple profiles in DataConfig : @Profile - @Dev @Prod @Test annotations
+TODO MULTIPART Test Multipart Request in UploadControllerTest
+
+TODO MULTIPART ??? send Image path for viewing in profile.html?  Profile Controller -> @RequestMapping( POST multipart /signup )
+
+TODO 0 - signUp -> confirmPage; and page Profile apart; ?make auto-login after registration? need to confirm email - send confirmation link? -> Java Mail API
 
     NOW LINKS:
 GET /
 GET POST /tweets
-GET POST /profile/signup
+GET /tweets/{tweetId}
+GET POST /signup
 GET /profile/{username}
 GET POST /login
 GET /login?error or /login-error
@@ -138,9 +149,8 @@ GET /error
 
     TO DO NEXT LINKS:
 
-GET /tweets/{tweetId} TODO (B) HTML 1 view single tweet.html
-GET POST /signup (change from /profile/signup ) TODO (A) HTML ... /profile/signUp to signUp
 GET PUT /me (profile of auth user)
+
     TODO HTML 0 create admin pages after creating REST service?
 GET /admin
 GET POST /admin/userList
