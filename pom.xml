@@ -81,8 +81,18 @@
                 <!--</exclusion>-->
             <!--</exclusions>-->
         </dependency>
-
-
+        <!--Commons DB Connection Pool-->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!--Hikari Connection Pool-->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.4.2</version>
+        </dependency>
         <!--Validation libs - @Email from Hibernate -->
         <dependency>
             <groupId>javax.validation</groupId>
@@ -170,6 +180,18 @@
         <!--<groupId>log4j</groupId>-->
         <!--<artifactId>log4j</artifactId>-->
         <!--<version>1.2.17</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-api</artifactId>-->
+            <!--<version>1.7.13</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-core</artifactId>-->
+            <!--<version>2.4.1</version>-->
         <!--</dependency>-->
 
     </dependencies>

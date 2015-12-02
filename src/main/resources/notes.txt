@@ -128,7 +128,7 @@ TODO JDBC - fix problem with creating 2 profiles with same name - check before i
 
 TODO SECURITY 0 RememberMe??
 TODO? SECURITY - CSRF 0 make CSRF-token support later...
-TODO @Profile 0 create multiple profiles in DataConfig : @Profile - @Dev @Prod @Test annotations
+
 TODO MULTIPART Test Multipart Request in UploadControllerTest
 
 TODO MULTIPART ??? send Image path for viewing in profile.html?  Profile Controller -> @RequestMapping( POST multipart /signup )
