@@ -107,7 +107,7 @@ temporary disabled: TLEAF.CONFIG.MethodSecurityConfig
             TO DO:
 
 
-TODO?? DELETE after DEBUG SPRING SECURITY
+TODO?? DELETE after DEBUG SPRING SECURITY (index(es).html)
 + added views for Spring Security enabling: admin\, shared\, user\index.html, _error, _index, _login
 + web.TmpSecurityController
 
@@ -126,8 +126,8 @@ in Controller:
 TODO JDBC - fix problem with creating 2 profiles with same name - check before inserting
 
 
-TODO SECURITY 0 RememberMe??
-TODO? SECURITY - CSRF 0 make CSRF-token support later...
+TODO? SECURITY - RememberMe
+TODO? SECURITY - CSRF
 
 TODO MULTIPART Test Multipart Request in UploadControllerTest
 
