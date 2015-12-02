@@ -107,14 +107,12 @@ temporary disabled: TLEAF.CONFIG.MethodSecurityConfig
             TO DO:
 
 
-TODO ??? DELETE after DEBUG SPRING SECURITY
+TODO?? DELETE after DEBUG SPRING SECURITY
 + added views for Spring Security enabling: admin\, shared\, user\index.html, _error, _index, _login
 + web.TmpSecurityController
 
 EXAMPLE 1:
 https://github.com/dkrasot/demo-thyme-security/tree/master/src/main/webapp/WEB-INF
-
-TODO TEST 0 write test for UploadController
 
 EXAMPLE of Handling exceptions:
 in SecurityConfig:
@@ -125,7 +123,7 @@ in Controller:
                         return "errors/403";
                     }
 
-TODO SECURITY 0 add RememberMe??
+TODO SECURITY 0 RememberMe??
 
     NOW LINKS:
 GET /
@@ -140,8 +138,8 @@ GET /error
 
     TO DO NEXT LINKS:
 
-GET /tweets/{tweetId} TODO HTML 1 view single tweet.html
-GET POST /signup (change from /profile/signup ) TODO HTML ... /profile/signUp to signUp
+GET /tweets/{tweetId} TODO (B) HTML 1 view single tweet.html
+GET POST /signup (change from /profile/signup ) TODO (A) HTML ... /profile/signUp to signUp
 GET PUT /me (profile of auth user)
     TODO HTML 0 create admin pages after creating REST service?
 GET /admin

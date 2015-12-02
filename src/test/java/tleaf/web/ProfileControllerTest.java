@@ -85,27 +85,4 @@ public class ProfileControllerTest {
                 .andExpect(model().attributeHasFieldErrors("profile","username", "password", "email"));//Profile and fields list:
     }
 
-// TODO MULTIPART 0 check MULTIPART REQUEST in separate Test class
-//    @Test
-//    public void when_Http_Post_Correct_File() throws Exception {
-//
-//        ProfileRepository mockRepository = mock(ProfileRepository.class);
-//        ProfileController controller = new ProfileController(mockRepository);
-//        MockMvc mockMvc = standaloneSetup(controller).build();
-//
-//        File report = new File("report.dbf");
-//        //Logic creating and populating dbf
-//
-//        InputStream inputstream = new FileInputStream(report);
-//        MockMultipartFile acceptFile = new MockMultipartFile("importFile", inputstream);
-//
-//        mockMvc.perform(fileUpload("/reports")
-//                .file(acceptFile)
-//                .param("download", "download")
-//                .param("some other param", "value"))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(model().attributeHasNoErrors("importFile"));
-//
-//    }
 }

@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="template :: headTemplate">
+    <title id="pageTitle">Twitter - Tweet</title>
+</head>
+<body>
+<div id="header" th:include="template :: header"></div>
+<div id="logout" th:replace="template :: logout"></div>
+<div id="content">
+
+    <div class="tweetView">
+        <div class="tweetMessage" th:text="${tweet.message}">Tweet message</div>
+        <div>
+            <span class="tweetTime" th:text="${tweet.creationDate}">tweet timestamp</span>
+        </div>
+    </div>
+
+    <br/>
+    <a th:href="@{/tweets}">Back to tweet list</a><br/>
+
+</div>
+<div id="footer" th:include="template :: footer"></div>
+</body>
+</html>

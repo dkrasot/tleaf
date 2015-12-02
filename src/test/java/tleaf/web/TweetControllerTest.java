@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -63,9 +64,6 @@ public class TweetControllerTest {
         verify(mockRepository, atLeastOnce()).save(new Tweet(null, "Hello world!", new Date()));
     }
 
-
-    //TODO HTML 1 make view for single tweet "tweet.html" - now test would be failed
-    @Ignore
     @Test
     public void showingSingleTweet() throws Exception {
         Tweet expectedTweet = new Tweet("Hello world!", new Date());
@@ -76,6 +74,7 @@ public class TweetControllerTest {
         MockMvc mockMvc = standaloneSetup(controller).build();
 
         mockMvc.perform(get("/tweets/12345"))
+                //.andDo(print())//for debug
                 .andExpect(view().name("tweet"))
                 .andExpect(model().attributeExists("tweet"))
                 .andExpect(model().attribute("tweet",expectedTweet));

@@ -25,7 +25,9 @@
                 th:id="'tweet_' + ${tweet.id}">
                 <div class="tweetMessage" th:text="${tweet.message}">Tweet message</div>
                 <div>
-                    <span class="tweetTime" th:text="${tweet.creationDate}">Tweet timestamp</span>
+                    <a th:href="@{/tweets/{tweetId}(tweetId=${tweet.id})}">
+                        <span class="tweetTime" th:text="${tweet.creationDate}">Tweet timestamp</span>
+                    </a>
                     <!--<span class="tweetLocation" th:text="'{' + ${tweet.latitude} + ', ' + ${tweet.longitude} + ')'">lat, long</span>-->
                 </div>
             </li>
