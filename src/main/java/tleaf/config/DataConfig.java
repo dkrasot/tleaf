@@ -20,7 +20,7 @@ public class DataConfig {
     //TODO @Profile 0 create multiple profiles in DataConfig : @Profile - @Dev @Prod @Test annotations
     // https://spring.io/blog/2011/02/14/spring-3-1-m1-introducing-profile/
     //@Profile("dev")
-    @Bean
+    @Bean(destroyMethod = "shutdown")
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)

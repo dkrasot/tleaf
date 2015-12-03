@@ -123,14 +123,13 @@ in Controller:
                         return "errors/403";
                     }
 
-TODO JDBC - fix problem with creating 2 profiles with same name - check before inserting
-
+TODO JDBC - fix problem with creating 2 Profiles with same username - check before inserting
+TODO DB - add HikariCP to Embedded H2
 
 TODO? SECURITY - RememberMe
 TODO? SECURITY - CSRF
 
 TODO MULTIPART Test Multipart Request in UploadControllerTest
-
 TODO MULTIPART ??? send Image path for viewing in profile.html?  Profile Controller -> @RequestMapping( POST multipart /signup )
 
 TODO 0 - signUp -> confirmPage; and page Profile apart; ?make auto-login after registration? need to confirm email - send confirmation link? -> Java Mail API

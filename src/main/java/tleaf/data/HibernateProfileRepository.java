@@ -43,10 +43,17 @@ public class HibernateProfileRepository implements ProfileRepository {
                 .add(Restrictions.eq("username", username))
                 .list().get(0);
     }
+    @Override
+    public Profile findById(long id) {
+        return (Profile) currentSession().get(Profile.class, id);
+    }
 
+    @Override
     public List<Profile> findAll(){
         return (List<Profile>) currentSession()
                 .createCriteria(Profile.class)
                 .list();
     }
+
+
 }
