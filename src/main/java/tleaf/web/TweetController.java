@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/tweets")
 public class TweetController {
-    private static final String MAX_LONG_AS_STRING = "9223372036854775807";
+    //private static final String MAX_LONG_AS_STRING = "9223372036854775807";
     private TweetRepository repository;
 
     @Autowired
@@ -28,9 +28,9 @@ public class TweetController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Tweet> tweets(@RequestParam(value = "max", defaultValue = MAX_LONG_AS_STRING) long max,
-                              @RequestParam(value = "count", defaultValue = "20") int count){
-        return repository.findTweets(max, count);
+    public List<Tweet> tweets(@RequestParam(value = "count", defaultValue = "20") int count){
+        //@RequestParam(value = "max", defaultValue = MAX_LONG_AS_STRING) long max,
+        return repository.findRecentTweets(count);
     }
 
     @RequestMapping(value = "/{tweetId}", method = RequestMethod.GET)

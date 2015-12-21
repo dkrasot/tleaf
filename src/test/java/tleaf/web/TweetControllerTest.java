@@ -1,6 +1,5 @@
 package tleaf.web;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
@@ -25,7 +24,7 @@ public class TweetControllerTest {
         // GET request "/tweets" has default values max = Long.MAX_VALUE, count = 20
         List<Tweet> expectedTweets = createTweetList(20);
         TweetRepository mockRepository = mock(TweetRepository.class);
-        when(mockRepository.findTweets(Long.MAX_VALUE, 20)).thenReturn(expectedTweets);
+        when(mockRepository.findRecentTweets(Long.MAX_VALUE, 20)).thenReturn(expectedTweets);
 
         TweetController controller = new TweetController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
@@ -41,7 +40,7 @@ public class TweetControllerTest {
     public void shouldShowPagedTweetList() throws Exception{
         List<Tweet> expectedTweets = createTweetList(50);
         TweetRepository mockRepository = mock(TweetRepository.class);
-        when(mockRepository.findTweets(12345678, 50)).thenReturn(expectedTweets);
+        when(mockRepository.findRecentTweets(12345678, 50)).thenReturn(expectedTweets);
 
         TweetController controller = new TweetController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)

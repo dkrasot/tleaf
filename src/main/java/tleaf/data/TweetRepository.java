@@ -6,9 +6,16 @@ import java.util.List;
 
 public interface TweetRepository {
 
-    List<Tweet> findTweets(long max, int count);
+    long count();
+
+    Tweet save(Tweet tweet);
 
     Tweet findOne(long tweetId);
 
-    void save(Tweet tweet);
+    List<Tweet> findRecentTweets();
+
+    List<Tweet> findRecentTweets(int count);
+
+    void delete(long tweetId);
+
 }

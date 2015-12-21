@@ -20,16 +20,24 @@ public class JdbcTweetRepository implements TweetRepository {
         this.jdbc = jdbc;
     }
 
+
     @Override
-    public void save(Tweet tweet) {
+    public long count() {
+        return jdbc.queryForObject("SELECT COUNT(*) FROM Tweets", Long.class);
+    }
+
+    @Override
+    public Tweet save(Tweet tweet) {
         jdbc.update("INSERT INTO Tweets (message, created_at)"+
                 " VALUES (?,?)",
                 tweet.getMessage(),
                 tweet.getCreationDate());
+        return tweet;
     }
 
     @Override
     public Tweet findOne(long tweetId) {
+        // OR findByTweetId ?
         return jdbc.queryForObject(
                 "SELECT id, message, created_at" +
                         " FROM Tweets" +
@@ -37,19 +45,35 @@ public class JdbcTweetRepository implements TweetRepository {
                 new TweetRowMapper(), tweetId);
     }
 
+//    @Override
+//    public List<Tweet> findRecentTweets(long max, int count) { ... " where id < ?"  , max...
+
     @Override
-    public List<Tweet> findTweets(long max, int count) {
+    public List<Tweet> findRecentTweets() {
         return jdbc.query(
                 "select id, message, created_at" +
-                        " from Tweets" +
-                        " where id < ?" +
+                        " FROM Tweets" +
+                        " order by created_at desc",
+                new TweetRowMapper());
+    }
+
+    @Override
+    public List<Tweet> findRecentTweets(int count) {
+        return jdbc.query(
+                "select id, message, created_at" +
+                        " FROM Tweets" +
                         " order by created_at desc limit ?",
-                new TweetRowMapper(), max, count);
+                new TweetRowMapper(), count);
     }
 
     private static class TweetRowMapper implements RowMapper<Tweet> {
         public Tweet mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new Tweet(rs.getLong("id"), rs.getString("message"), rs.getDate("created_at"));
         }
+    }
+
+    @Override
+    public void delete(long tweetId) {
+        jdbc.update("DELETE FROM Tweets WHERE id = ?", tweetId);
     }
 }

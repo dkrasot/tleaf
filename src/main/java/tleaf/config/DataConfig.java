@@ -34,8 +34,6 @@ public class DataConfig {
         return new JdbcTemplate(dataSource);
     }
 
-
-
     //@Bean
     public HikariDataSource dataSourceHikari() {
         HikariDataSource ds = new HikariDataSource();

@@ -3,6 +3,7 @@ package tleaf.data;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import tleaf.Profile;
 
 import javax.inject.Inject;
@@ -14,7 +15,7 @@ public class HibernateProfileRepository implements ProfileRepository {
 
     private SessionFactory sessionFactory;
 
-    @Inject
+    @Autowired//@Inject
     public HibernateProfileRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -23,6 +24,7 @@ public class HibernateProfileRepository implements ProfileRepository {
         return sessionFactory.getCurrentSession();
     }
 
+    @Override
     public long count() {
         return findAll().size();
     }
@@ -44,7 +46,7 @@ public class HibernateProfileRepository implements ProfileRepository {
                 .list().get(0);
     }
     @Override
-    public Profile findById(long id) {
+    public Profile findOne(long id) {
         return (Profile) currentSession().get(Profile.class, id);
     }
 

@@ -8,6 +8,7 @@ import tleaf.Profile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class JdbcProfileRepository implements ProfileRepository {
@@ -16,6 +17,11 @@ public class JdbcProfileRepository implements ProfileRepository {
     @Autowired
     public JdbcProfileRepository(JdbcOperations jdbc) {
         this.jdbc = jdbc;
+    }
+
+    @Override
+    public long count() {
+        return jdbc.queryForObject("SELECT COUNT(*) FROM Profile", Long.class);
     }
 
     @Override
@@ -33,8 +39,18 @@ public class JdbcProfileRepository implements ProfileRepository {
     public Profile findByUsername(String username) {
         return jdbc.queryForObject(
                 "SELECT id, username, password, email FROM Profile WHERE username = ? ",
-                new ProfileRowMapper(),
-                username);
+                new ProfileRowMapper(), username);
+    }
+
+    @Override
+    public Profile findOne(long id) {
+        return jdbc.queryForObject("SELECT id, username, password, email FROM Profile WHERE id = ?",
+                new ProfileRowMapper(), id);
+    }
+
+    @Override
+    public List<Profile> findAll() {
+        return jdbc.query("SELECT * FROM Profile", new ProfileRowMapper());
     }
 
     private static class ProfileRowMapper implements RowMapper<Profile> {
