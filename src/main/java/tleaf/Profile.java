@@ -2,6 +2,7 @@ package tleaf;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.web.multipart.MultipartFile;
 import tleaf.validate.EmailValidator;
@@ -42,7 +43,6 @@ public class Profile {
         this.password = password;
         this.email = email;
     }
-
 
     public Long getId() {
         return id;
@@ -86,7 +86,12 @@ public class Profile {
         return HashCodeBuilder.reflectionHashCode(this, new String[]{"username", "password", "email"});
     }
 
-//    private MultipartFile profilePicture;
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
+
+    //    private MultipartFile profilePicture;
 //
 //    public MultipartFile getProfilePicture() {
 //        return profilePicture;

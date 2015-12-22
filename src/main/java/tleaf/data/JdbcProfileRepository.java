@@ -58,7 +58,7 @@ public class JdbcProfileRepository implements ProfileRepository {
             return new Profile(
                     rs.getLong("id"),
                     rs.getString("username"),
-                    null,
+                    rs.getString("password"),//TODO hide password? : //null,
                     rs.getString("email"));
         }
     }

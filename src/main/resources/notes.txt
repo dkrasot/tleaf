@@ -106,7 +106,7 @@ temporary disabled: TLEAF.CONFIG.MethodSecurityConfig
 
             TO DO:
 
-
+TODO DB - make Email unique in table + prevent Duplicates of ( id; email ) before INSERTing to DB
 TODO?? DELETE after DEBUG SPRING SECURITY (index(es).html)
 + added views for Spring Security enabling: admin\, shared\, user\index.html, _error, _index, _login
 + web.TmpSecurityController
@@ -132,7 +132,8 @@ TODO? SECURITY - CSRF
 TODO MULTIPART Test Multipart Request in UploadControllerTest
 TODO MULTIPART ??? send Image path for viewing in profile.html?  Profile Controller -> @RequestMapping( POST multipart /signup )
 
-TODO 0 - signUp -> confirmPage; and page Profile apart; ?make auto-login after registration? need to confirm email - send confirmation link? -> Java Mail API
+TODO 0 - signUp -> confirmPage; and page Profile apart; ?make auto-login after registration?
+TODO 0 - signUp - make field 'confirmedByEmail' -> need to confirm email - send confirmation link? -> Java Mail API
 
     NOW LINKS:
 GET /
