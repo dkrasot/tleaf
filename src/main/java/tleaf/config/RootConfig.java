@@ -9,7 +9,7 @@ import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import java.util.regex.Pattern;
 
 @Configuration
-@Import(DataConfig.class)
+@Import({DataConfig.class,OtherDataConfigs.class})
 @ComponentScan(basePackages = {"tleaf"},
         //excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class))
         excludeFilters = {

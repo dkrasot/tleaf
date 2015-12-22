@@ -1,5 +1,7 @@
 package tleaf.config;
 
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -36,6 +38,18 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
         );
         // registration.setAsyncSupported(true); //for STOMP implementation
     }
+
+    //activation of Spring @Profile 'dev' -> TODO later active profile(s) to .properties-file
+    //use @ActiveProfiles(...) for test diff configs https://spring.io/blog/2011/06/21/spring-3-1-m2-testing-with-configuration-classes-and-profiles
+    @Override
+    protected WebApplicationContext createRootApplicationContext() {
+        WebApplicationContext context = (WebApplicationContext) super.createRootApplicationContext();
+        ((ConfigurableEnvironment)context.getEnvironment()).setActiveProfiles("dev");
+        return context;
+    }
+
+
+
     // ServletRegistration.Dynamic supports configuring of:
     // multipart-requests by setMultipartConfig(), load priorities by setLoadOnStartup(), init params by setInitParameter()
 
