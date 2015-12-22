@@ -37,7 +37,8 @@ public class DataConfig {
     //@Bean
     public HikariDataSource dataSourceHikari() {
         HikariDataSource ds = new HikariDataSource();
-        ds.setJdbcUrl("jdbc:mysql://localhost:8080/tleaf");
+        //ds.setJdbcUrl("jdbc:mysql://localhost:8080/tleaf");
+        ds.setJdbcUrl("jdbc:h2:~/test");
         //alternative to JDBC URL ( with Spring Boot use JdbcUrl only )
         //ds.setDataSourceClassName("org.h2.jdbcx.JdbcDataSource");
         ds.setUsername("test");

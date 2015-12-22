@@ -24,7 +24,8 @@ public class TweetControllerTest {
         // GET request "/tweets" has default values max = Long.MAX_VALUE, count = 20
         List<Tweet> expectedTweets = createTweetList(20);
         TweetRepository mockRepository = mock(TweetRepository.class);
-        when(mockRepository.findRecentTweets(Long.MAX_VALUE, 20)).thenReturn(expectedTweets);
+        //when(mockRepository.findRecentTweets(Long.MAX_VALUE, 20)).thenReturn(expectedTweets);
+        when(mockRepository.findRecentTweets(20)).thenReturn(expectedTweets);
 
         TweetController controller = new TweetController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
@@ -40,13 +41,15 @@ public class TweetControllerTest {
     public void shouldShowPagedTweetList() throws Exception{
         List<Tweet> expectedTweets = createTweetList(50);
         TweetRepository mockRepository = mock(TweetRepository.class);
-        when(mockRepository.findRecentTweets(12345678, 50)).thenReturn(expectedTweets);
+        //when(mockRepository.findRecentTweets(12345678, 50)).thenReturn(expectedTweets);
+        when(mockRepository.findRecentTweets(50)).thenReturn(expectedTweets);
 
         TweetController controller = new TweetController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(new InternalResourceView("/WEB-INF/views/tweets.html")).build();
 
-        mockMvc.perform(get("/tweets?max=12345678&count=50"))
+        //mockMvc.perform(get("/tweets?max=12345678&count=50"))
+        mockMvc.perform(get("/tweets?count=50"))
                 .andExpect(view().name("tweets"))
                 .andExpect(model().attributeExists("tweetList"))
                 .andExpect(model().attribute("tweetList", hasItems(expectedTweets.toArray())));
