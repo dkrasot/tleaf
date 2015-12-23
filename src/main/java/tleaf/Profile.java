@@ -10,6 +10,7 @@ import tleaf.validate.EmailValidator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Profile {
@@ -36,6 +37,16 @@ public class Profile {
     @EmailValidator
     private String email;
 
+    // for JPA
+    @OneToMany(targetEntity = Tweet.class, fetch = FetchType.EAGER, mappedBy = "profile")
+    private List<Tweet> tweets;
+    public List<Tweet> getTweets() {
+        return tweets;
+    }
+
+    public void setTweets(List<Tweet> tweets) {
+        this.tweets = tweets;
+    }
 
     public Profile() {
         //make default constructor Private???

@@ -6,14 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import tleaf.Profile;
 import tleaf.config.DataConfig;
 import org.junit.Test;
-import tleaf.Profile;
-import tleaf.validate.EmailValidator;
+import tleaf.data.jdbc.JdbcProfileRepository;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import java.util.Set;
 import java.util.List;
 
 public class ProfileRepositoryTest {

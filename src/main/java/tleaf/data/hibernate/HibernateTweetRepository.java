@@ -1,4 +1,4 @@
-package tleaf.data;
+package tleaf.data.hibernate;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -6,12 +6,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import tleaf.Tweet;
+import tleaf.data.TweetRepository;
 
 import java.io.Serializable;
 import java.util.List;
 
-//@Repository
+@Repository
+@org.springframework.context.annotation.Profile("orm-hibernate")
 public class HibernateTweetRepository implements TweetRepository {
 
     private SessionFactory sessionFactory;

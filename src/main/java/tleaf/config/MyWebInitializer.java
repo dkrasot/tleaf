@@ -44,7 +44,12 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
     @Override
     protected WebApplicationContext createRootApplicationContext() {
         WebApplicationContext context = (WebApplicationContext) super.createRootApplicationContext();
-        ((ConfigurableEnvironment)context.getEnvironment()).setActiveProfiles("development");
+        ((ConfigurableEnvironment)context.getEnvironment()).setActiveProfiles("jdbc");//orm-hibernate
+        // jdbc: config.DataConfig (DataSource; jdbcTemplate)
+        // orm-hibernate: config.DataConfig(sessionFactory; persistenceTranslation) + data.hibernate.Hibernate<?>Repository
+        // orm-jpa: config.SpringDataJpaConfig + data.jpa.ProfileRepo; TweetRepo
+        // orm-jpa-hibernate: NO CONFIG + data.jpahibernate.JpaHib<?>Repo
+
         return context;
     }
 

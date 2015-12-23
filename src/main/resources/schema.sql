@@ -19,11 +19,14 @@ CREATE TABLE Profile (
   id IDENTITY,
   username VARCHAR(20) UNIQUE not null,
   password VARCHAR(20) not null,
-  email VARCHAR(30) not null
+  email VARCHAR(30) not null --TODO add status field??
+  --, status VARCHAR(10) not null
 );
 
 CREATE TABLE Tweets (
-	id IDENTITY,
+	--id IDENTITY,
+	id INTEGER IDENTITY PRIMARY KEY,
 	message VARCHAR(140) not null,
-	created_at TIMESTAMP not null
+	created_at TIMESTAMP not null--DATETIME ? DATE ?
+	--, FOREIGN KEY (Profile) REFERENCES Profile(id)-- FOR HIBERNATE / JPA
 );

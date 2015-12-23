@@ -22,7 +22,13 @@ public class Tweet {
 
 
     public Tweet(String message, Date creationDate) {
-        this(null, null, message, creationDate);
+        this(null, message, creationDate);
+    }
+
+    public Tweet(Long id, String message, Date creationDate) {
+        this.id = id;
+        this.message = message;
+        this.creationDate = creationDate;
     }
 
     public Tweet(Long id, Profile profile, String message, Date creationDate) {

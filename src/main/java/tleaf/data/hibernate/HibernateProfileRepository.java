@@ -1,16 +1,19 @@
-package tleaf.data;
+package tleaf.data.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import tleaf.Profile;
+import tleaf.data.ProfileRepository;
 
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
-//@Repository
+@Repository
+@org.springframework.context.annotation.Profile("orm-hibernate")
 public class HibernateProfileRepository implements ProfileRepository {
 
     private SessionFactory sessionFactory;

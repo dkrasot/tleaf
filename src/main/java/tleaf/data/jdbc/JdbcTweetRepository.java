@@ -1,10 +1,11 @@
-package tleaf.data;
+package tleaf.data.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import tleaf.Tweet;
+import tleaf.data.TweetRepository;
 
 
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
+@org.springframework.context.annotation.Profile("jdbc")
 public class JdbcTweetRepository implements TweetRepository {
     private JdbcOperations jdbc;
 
