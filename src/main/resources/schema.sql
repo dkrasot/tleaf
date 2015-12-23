@@ -11,6 +11,9 @@
 -- insert into Users (username, password, first_name, last_name, email)
 -- values ('user01', 'pass01', 'Dmytro', 'Krasota', 'dkras@gmail.com');
 -- commit;
+---- CHECK DROP QUERIES:
+DROP TABLE IF EXISTS Profile;
+DROP TABLE IF EXISTS Tweets;
 
 CREATE TABLE Profile (
   id IDENTITY,
