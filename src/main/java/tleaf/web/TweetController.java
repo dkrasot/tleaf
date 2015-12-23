@@ -46,7 +46,7 @@ public class TweetController {
     @RequestMapping(method = RequestMethod.POST)
     public String saveTweet(@Valid TweetForm form, Model model) {//throws Exception{
         try {
-            repository.save(new Tweet(null, form.getMessage(), new Date()));
+            repository.save(new Tweet(form.getMessage(), new Date()));
             return "redirect:/tweets";
         } catch (DuplicateTweetException e) {
             return "error/duplicate";

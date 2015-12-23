@@ -7,30 +7,38 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.web.multipart.MultipartFile;
 import tleaf.validate.EmailValidator;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Profile {
     //    id IDENTITY,
 //    username VARCHAR(20) UNIQUE not null,
 //    password VARCHAR(20) not null,
 //    email VARCHAR(30) not null
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "username")
     @NotNull
     @Size(min = 5, max = 16, message = "{username.size}")
     private String username;
 
+    @Column(name = "password")
     @NotNull
     @Size(min = 5, max = 25, message = "{password.size}")
     private String password;
 
+    @Column(name = "email")
     @NotNull
     @EmailValidator
     private String email;
 
 
     public Profile() {
+        //make default constructor Private???
     }
 
     public Profile(String username, String password, String email) {
