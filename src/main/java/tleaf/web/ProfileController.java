@@ -4,15 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tleaf.Profile;
 import tleaf.data.ProfileRepository;
+import tleaf.entity.Profile;
+import tleaf.entity.ProfileForm;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -42,7 +42,7 @@ public class ProfileController {
         if (bindingResult.hasErrors()) {
             return "signUp";
         }
-        repository.save(profile);
+        profile = repository.save(profile);
         redirectAttributes.addAttribute("username", profile.getUsername());
         redirectAttributes.addFlashAttribute("profile",profile);
         return "redirect:/profile/{username}";

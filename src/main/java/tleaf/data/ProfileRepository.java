@@ -2,7 +2,7 @@ package tleaf.data;
 
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import tleaf.Profile;
+import tleaf.entity.Profile;
 
 import java.util.List;
 
@@ -10,16 +10,15 @@ public interface ProfileRepository {
 
     long count();
 
-    @CachePut(value = "ehCache", key = "#result.id")
+    @CachePut(value = "myCache", key = "#result.id") // maybe #result.username?? unique username/email
     Profile save(Profile profile);
 
-    @Cacheable("ehCache")
+    @Cacheable(value = "myCache", key = "#result.id")
     Profile findOne(long id);
 
-    @Cacheable("ehCache")
+    @Cacheable(value = "myCache", key = "#result.username")
     Profile findByUsername(String username);
 
-    @Cacheable("ehCache")
     List<Profile> findAll();
 
 }

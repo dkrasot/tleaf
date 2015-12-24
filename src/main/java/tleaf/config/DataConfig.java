@@ -1,6 +1,5 @@
 package tleaf.config;
 
-import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +15,6 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DataConfig {
-
 
     @Bean
     public JdbcOperations jdbcTemplate(DataSource dataSource) {

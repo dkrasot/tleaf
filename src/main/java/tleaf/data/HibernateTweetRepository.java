@@ -4,9 +4,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import tleaf.Tweet;
+import tleaf.entity.Tweet;
 
 import java.io.Serializable;
 import java.util.List;

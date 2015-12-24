@@ -1,0 +1,4 @@
+<ehcache>
+    <cache name="myCache" maxBytesLocalHeap="50M" timeToLiveSeconds="100"/>
+</ehcache>
+<!--ehCache docs : http://ehcache.org/documentation/configuration-->

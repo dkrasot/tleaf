@@ -1,19 +1,13 @@
 package tleaf.data;
 
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import tleaf.Profile;
 import tleaf.config.DataConfig;
-import org.junit.Test;
-import tleaf.Profile;
-import tleaf.validate.EmailValidator;
+import tleaf.entity.Profile;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import java.util.Set;
 import java.util.List;
 
 public class ProfileRepositoryTest {

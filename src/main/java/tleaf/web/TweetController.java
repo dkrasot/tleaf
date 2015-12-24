@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import tleaf.Tweet;
 import tleaf.data.TweetRepository;
+import tleaf.entity.Tweet;
+import tleaf.entity.TweetForm;
 import tleaf.exception.DuplicateTweetException;
 import tleaf.exception.TweetNotFoundException;
 

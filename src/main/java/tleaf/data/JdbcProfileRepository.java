@@ -1,11 +1,10 @@
 package tleaf.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import tleaf.Profile;
+import tleaf.entity.Profile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +32,7 @@ public class JdbcProfileRepository implements ProfileRepository {
     @Override
     public Profile save(Profile profile) {
         jdbc.update(INSERT_PROFILE, profile.getUsername(), profile.getPassword(), profile.getEmail());
-        return profile;
+        return findByUsername(profile.getUsername()); // now select for GETTING result.ID; WAS: return profile WITHOUT SELECT from REPO
     }
 
     @Override
@@ -43,11 +42,11 @@ public class JdbcProfileRepository implements ProfileRepository {
 
     @Override
     public Profile findOne(long id) {
-        try {
-            return jdbc.queryForObject(SELECT_PROFILE_BY_ID, new ProfileRowMapper(), id);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
+//        try {
+        return jdbc.queryForObject(SELECT_PROFILE_BY_ID, new ProfileRowMapper(), id);
+//        } catch (EmptyResultDataAccessException e) {
+//            return null;
+//        }
     }
 
     @Override

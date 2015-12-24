@@ -1,6 +1,6 @@
         INITIALIZER
 
-    TLEAF.CONFIG.MyWebInitializer (extends AbstractAnnotationConfigDispatcherServletInitializer)
+    TLEAF.CONFIG.MainInitializer (extends AbstractAnnotationConfigDispatcherServletInitializer)
 Alternative to web.xml - needs Servlet 3.0+
 using getServletCC (WebConfig) for creating Spring app ctx) and ContextLoaderListener (using getRootCC -> 2nd app ctx )
 - AUTO creates DispatcherServlet
@@ -134,6 +134,8 @@ TODO MULTIPART ??? send Image path for viewing in profile.html?  Profile Control
 
 TODO 0 - signUp -> confirmPage; and page Profile apart; ?make auto-login after registration?
 TODO 0 - signUp - make field 'confirmedByEmail' -> need to confirm email - send confirmation link? -> Java Mail API
+
+TODO CACHE !!! - @CachePut ON method SAVE() with id-key == NULL  - select from repo ID? or make Username/Email as ID?
 
     NOW LINKS:
 GET /

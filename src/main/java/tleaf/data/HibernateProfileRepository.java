@@ -4,9 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import tleaf.Profile;
+import tleaf.entity.Profile;
 
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 

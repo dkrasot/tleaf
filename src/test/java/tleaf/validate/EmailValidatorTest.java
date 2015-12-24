@@ -1,11 +1,9 @@
 package tleaf.validate;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import tleaf.Profile;
-import tleaf.validate.EmailValidator;
+import tleaf.entity.Profile;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

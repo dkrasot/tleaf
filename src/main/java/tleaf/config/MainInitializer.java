@@ -3,14 +3,12 @@ package tleaf.config;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import tleaf.cache.CachingConfig;
-import tleaf.web.WebConfig;
 
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
 
-public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MainInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getServletConfigClasses() {

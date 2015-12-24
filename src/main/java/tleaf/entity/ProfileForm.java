@@ -1,8 +1,7 @@
-package tleaf.web;
+package tleaf.entity;
 
-import org.hibernate.validator.constraints.Email;
 import org.springframework.web.multipart.MultipartFile;
-import tleaf.Profile;
+import tleaf.entity.Profile;
 import tleaf.validate.EmailValidator;
 
 import javax.validation.constraints.NotNull;
