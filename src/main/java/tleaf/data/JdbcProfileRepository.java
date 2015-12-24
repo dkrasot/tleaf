@@ -1,7 +1,6 @@
 package tleaf.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,8 +14,8 @@ import java.util.List;
 @Repository
 public class JdbcProfileRepository implements ProfileRepository {
     private JdbcOperations jdbc;
-    private final String SELECT_PROFILE = "SELECT * FROM Profile";
-    private final String SELECT_COUNT_PROFILE = "SELECT COUNT(*) FROM Profile";
+    private final String SELECT_PROFILES = "SELECT * FROM Profile";
+    private final String SELECT_COUNT_PROFILES = "SELECT COUNT(*) FROM Profile";
     private final String SELECT_PROFILE_BY_USERNAME = "SELECT id, username, password, email FROM Profile WHERE username = ?";
     private final String SELECT_PROFILE_BY_ID = "SELECT id, username, password, email FROM Profile WHERE id = ?";
     private final String INSERT_PROFILE = "INSERT INTO Profile (username, password, email) VALUES (?,?,?)";
@@ -28,7 +27,7 @@ public class JdbcProfileRepository implements ProfileRepository {
 
     @Override
     public long count() {
-        return jdbc.queryForObject(SELECT_COUNT_PROFILE, Long.class);
+        return jdbc.queryForObject(SELECT_COUNT_PROFILES, Long.class);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class JdbcProfileRepository implements ProfileRepository {
 
     @Override
     public List<Profile> findAll() {
-        return jdbc.query(SELECT_PROFILE, new ProfileRowMapper());
+        return jdbc.query(SELECT_PROFILES, new ProfileRowMapper());
     }
 
     private static class ProfileRowMapper implements RowMapper<Profile> {

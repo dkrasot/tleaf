@@ -13,11 +13,13 @@ public interface ProfileRepository {
     @CachePut(value = "ehCache", key = "#result.id")
     Profile save(Profile profile);
 
-    Profile findByUsername(String username);
-
     @Cacheable("ehCache")
     Profile findOne(long id);
 
+    @Cacheable("ehCache")
+    Profile findByUsername(String username);
+
+    @Cacheable("ehCache")
     List<Profile> findAll();
 
 }

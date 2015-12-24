@@ -50,8 +50,8 @@ public class HibernateTweetRepository implements TweetRepository {
     }
 
     @Override
-    public Tweet findOne(long tweetId) {
-        return (Tweet) currentSession().get(Tweet.class, tweetId);
+    public Tweet findOne(long id) {
+        return (Tweet) currentSession().get(Tweet.class, id);
     }
 
     @Override
