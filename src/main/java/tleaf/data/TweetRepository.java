@@ -15,6 +15,9 @@ public interface TweetRepository {
     long count();
 
 
+    //@PreAuthorize("hasAnyRole({'ROLE_USER','ROLE_ADMIN'})")
+    //@PostAuthorize("hasRole('ROLE_ADMIN') || filterObject.profile.username == principal.name")
+
     //@PreAuthorize("(hasRole('ROLE_USER') AND #tweet.message.length() <= 140) OR hasRole('ROLE_ADMIN')")
     //void addTweet(Tweet tweet);
 
