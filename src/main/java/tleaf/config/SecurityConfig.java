@@ -1,19 +1,31 @@
 package tleaf.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Configuration
-@EnableWebSecurity
-//SpringSecurity auto-config: login-page="/login"; login-processing-url="/login";
+//@EWS: SpringSecurity auto-config: login-page="/login"; login-processing-url="/login";
 // logout-success-url="/login?logout"; logout-url="/logout"; authentication-failure-url="/login?error";
 // password-parameter="password"; username-parameter="username"
+
+@Configuration
+@EnableWebSecurity
+//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    //// alternative OF MethodSecurity TO MethodSecurityConfig (extends GlobalMethodSecurityConfiguration)
+//    @Bean
+//    @Override
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -42,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/","/signup","/profile/**").permitAll()
+                .antMatchers("/", "/signup", "/profile/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/tweets").authenticated()
                 .antMatchers(HttpMethod.GET, "/tweets").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
@@ -63,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout()
                 .permitAll()
                 .logoutUrl("/logout")
-                //.logoutSuccessUrl("/")
+                        //.logoutSuccessUrl("/")
                 .invalidateHttpSession(true);
 
         //http.exceptionHandling().accessDeniedPage("/error"); // HANDLE only 403 NO ACCESS ..
