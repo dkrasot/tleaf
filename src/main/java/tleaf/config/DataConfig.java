@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.remoting.rmi.RmiServiceExporter;
+import tleaf.service.TleafService;
 
 import javax.sql.DataSource;
 
@@ -84,4 +86,16 @@ public class DataConfig {
         return ds;
     }
 
+
+    // RMI + service-tier
+    @Bean
+    public RmiServiceExporter rmiServiceExporter(TleafService tleafService) {
+        RmiServiceExporter rmiExporter = new RmiServiceExporter();
+        rmiExporter.setService(tleafService);
+        rmiExporter.setServiceName("TleafService");
+        rmiExporter.setServiceInterface(TleafService.class);
+        //rmiExporter.setRegistryHost("rmi.tleaf.com");
+        //rmiExporter.setRegistryPort(1199);//by default is D1099
+        return rmiExporter;
+    }
 }

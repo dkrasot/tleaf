@@ -115,7 +115,7 @@
             <artifactId>javax.el</artifactId>
             <version>2.2.4</version>
         </dependency>
-        <!--if Hibernate Validator running not on JavaEE app server - user hibernate-validator-cdi -->
+        <!--if Hibernate Validator running not on JavaEE app server - use hibernate-validator-cdi -->
 
 
         <dependency>
