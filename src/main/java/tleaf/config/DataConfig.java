@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 import tleaf.service.TleafService;
 
@@ -88,14 +89,25 @@ public class DataConfig {
 
 
     // RMI + service-tier
-    @Bean
+    //RmiServiceExporter wraps Service to class-adapter, which would be linked to RMI registry
+    //@Bean
     public RmiServiceExporter rmiServiceExporter(TleafService tleafService) {
         RmiServiceExporter rmiExporter = new RmiServiceExporter();
         rmiExporter.setService(tleafService);
         rmiExporter.setServiceName("TleafService");
         rmiExporter.setServiceInterface(TleafService.class);
         //rmiExporter.setRegistryHost("rmi.tleaf.com");
+        rmiExporter.setRegistryHost("rmi://localhost/TleafService");
         //rmiExporter.setRegistryPort(1199);//by default is D1099
         return rmiExporter;
     }
+
+    //// ON THEN CLIENT SIDE: DAO config @Bean RmiProxyFactoryBean
+//    @Bean
+//    public RmiProxyFactoryBean tleafService1() {
+//        RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
+//        rmiProxy.setServiceUrl("rmi://localhost/TleafService");
+//        rmiProxy.setServiceInterface(TleafService.class);
+//        return rmiProxy;
+//    }
 }
